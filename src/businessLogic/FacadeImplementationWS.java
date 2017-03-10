@@ -23,8 +23,8 @@ import exceptions.WrongPassword;
 //Service Implementation
 @WebService(endpointInterface = "businessLogic.ApplicationFacadeInterfaceWS")
 public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
-
-	int putada;
+	
+	int erior;
 	private int nextHouseNumber;
 	/**
 	 * 
