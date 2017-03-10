@@ -1,0 +1,17 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-03-10 11:05:21 #1 store] 
+Database 'C:\Users\ehu\workspace\WSRuralHouse-2017\resources\ruralHouses.odb' has been recovered (tr. 24-26)
+
+[2017-03-10 11:05:21 #2 store] 
+Database 'C:\Users\ehu\workspace\WSRuralHouse-2017\resources\ruralHouses.odb' is opened by 2228@U030074
+
+[2017-03-10 11:05:22 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-03-10 11:05:22 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-03-10 11:05:22 #5 type] 
+Type domain.Owner is not enhanced.
+
