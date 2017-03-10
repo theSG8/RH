@@ -24,7 +24,7 @@ import exceptions.WrongPassword;
 @WebService(endpointInterface = "businessLogic.ApplicationFacadeInterfaceWS")
 public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
-	
+	int putada;
 	private int nextHouseNumber;
 	/**
 	 * 
