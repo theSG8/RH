@@ -25,9 +25,6 @@ import exceptions.WrongPassword;
 public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 
-	int ernacional;
-
-	int erior;
 
 	private int nextHouseNumber;
 	/**

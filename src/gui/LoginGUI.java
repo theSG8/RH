@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JPasswordField;
 
+import domain.User;
 import exceptions.UserNotExist;
 import exceptions.WrongPassword;
 import businessLogic.ApplicationFacadeInterfaceWS;
@@ -29,6 +30,7 @@ import businessLogic.FacadeImplementationWS;
 
 public class LoginGUI extends JFrame {
 
+	public static User currentUser;
 	private JPanel contentPane;
 	private JTextField userField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
