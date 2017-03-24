@@ -85,7 +85,7 @@ public class AddRuralHouseGUI extends JFrame {
 		btnAddRuralHouse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				businessLogic.addHouse( descriptionTextField.getText(),cityTextField.getText());
+				businessLogic.addHouse( descriptionTextField.getText(),cityTextField.getText(),OwnOptions.currentOwner);
 				showDialog("Casa rural añadida correctamente");
 				
 			}

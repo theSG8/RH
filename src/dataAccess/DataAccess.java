@@ -197,10 +197,12 @@ public class DataAccess {
 
 	}
 
-	public void storeHouse(RuralHouse rh) {
+	public void storeHouse(RuralHouse rh, Owner ow) {
 
 		db.getTransaction().begin();
 		db.persist(rh);
+		Owner dbOwner=db.find(Owner.class,ow.getUsername());
+		dbOwner.addHouse(rh);
 		db.getTransaction().commit();
 
 	}

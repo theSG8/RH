@@ -1,5 +1,6 @@
 package businessLogic;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -137,7 +138,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 
-	public boolean makeOwnerLogin(String user, String pass)
+	public Owner makeOwnerLogin(String user, String pass)
 			throws WrongPassword, UserNotExist {
 		DataAccess dbManager = new DataAccess();
 		Owner ow = dbManager.getOwner(user);
@@ -148,7 +149,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		else {
 			if (ow.checkPassword(pass)){
 				dbManager.close();
-				return true;
+				return ow;
 			}
 			else{
 				dbManager.close();
@@ -158,10 +159,10 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 	
-	public void addHouse(String des,String city){
+	public void addHouse(String des,String city,Owner current){
 		RuralHouse rh = new RuralHouse(des,city);
 		DataAccess dbManager = new DataAccess();
-		dbManager.storeHouse(rh);
+		//OJO ESTO COMPROBAR dbManager.storeHouse(rh,current);
 		dbManager.close();
 	}
 	
@@ -210,5 +211,15 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 			  dbManager.close();
 			  return res;
 		}
+		
+		
+		public Vector<RuralHouse> getOwnerHouses(Owner ow){
+			DataAccess dbManager = new DataAccess();
+			 Owner dbOwner =dbManager.getOwner(ow.getUsername());
+			 dbManager.close();
+			
+			return dbOwner.getRuralHouses();
+		}
+		
 
 }

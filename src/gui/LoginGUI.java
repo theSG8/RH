@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JPasswordField;
 
+import domain.Owner;
 import domain.User;
 import exceptions.UserNotExist;
 import exceptions.WrongPassword;
@@ -101,8 +102,8 @@ public class LoginGUI extends JFrame {
 				if (ownerRB.isSelected()) {
 
 					try {
-						businessLogic.makeOwnerLogin(userField.getText(), String.valueOf(passwordField.getPassword()));
-						OwnOptions oo= new OwnOptions(bl);
+						Owner ow =businessLogic.makeOwnerLogin(userField.getText(), String.valueOf(passwordField.getPassword()));
+						OwnOptions oo= new OwnOptions(bl,ow);
 						oo.setVisible(true);
 						closeLogin();
 						

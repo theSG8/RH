@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ public class Owner implements User {
 	@Id
 	String username;
 	String password;
-	ArrayList<RuralHouse> ruralHouses = new ArrayList<>();
+	Vector<RuralHouse> ruralHouses = new Vector<RuralHouse>();
 
 	public Owner(String username, String password) {
 		super();
@@ -27,7 +28,7 @@ public class Owner implements User {
 		return password;
 	}
 
-	public ArrayList<RuralHouse> getRuralHouses() {
+	public Vector<RuralHouse> getRuralHouses() {
 		return ruralHouses;
 	}
 

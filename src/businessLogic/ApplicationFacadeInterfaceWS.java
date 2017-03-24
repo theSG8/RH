@@ -1,8 +1,10 @@
 package businessLogic;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 import java.util.Date;
+
 
 
 
@@ -72,10 +74,11 @@ public interface ApplicationFacadeInterfaceWS  {
 	@WebMethod public void initializeBD();
 
 	 public void addNewUser(String user, String pass) throws UserAlreadyExists;
-	 public boolean makeOwnerLogin(String user, String pass)throws WrongPassword, UserNotExist;
-	 public void addHouse(String des,String city);
+	 public Owner makeOwnerLogin(String user, String pass)throws WrongPassword, UserNotExist;
+	 public void addHouse(String des,String city,Owner current);
 	 public void checkAddOwner(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists;
 	 public void removeOffer(Offer of);
 	 public void removeHouse(RuralHouse rh);
 	 public Vector<Offer> getAllOffers();
+	 public Vector<RuralHouse> getOwnerHouses(Owner ow);
 }
