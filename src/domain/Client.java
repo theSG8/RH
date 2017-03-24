@@ -3,6 +3,8 @@ package domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+//sudadera
+
 @Entity
 public class Client implements User {
 
