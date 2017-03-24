@@ -14,12 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import businessLogic.FacadeImplementationWS;
 import domain.RuralHouse;
-import javax.swing.SwingConstants;
 
 public class DeleteRuralHouseGUI extends JFrame {
 
@@ -37,8 +37,7 @@ public class DeleteRuralHouseGUI extends JFrame {
 			@Override
 			public void run() {
 				try {
-					DeleteRuralHouseGUI frame = new DeleteRuralHouseGUI(
-							new FacadeImplementationWS(), null);
+					DeleteRuralHouseGUI frame = new DeleteRuralHouseGUI(new FacadeImplementationWS(), null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,12 +49,10 @@ public class DeleteRuralHouseGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DeleteRuralHouseGUI(ApplicationFacadeInterfaceWS bl,
-			Vector<RuralHouse> rh) {
+	public DeleteRuralHouseGUI(ApplicationFacadeInterfaceWS bl, Vector<RuralHouse> rh) {
 
 		setBusinessLogic(bl);
 
-	
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,8 +61,7 @@ public class DeleteRuralHouseGUI extends JFrame {
 
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString(
-				"DeleteRuralHouse"));
+		lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("DeleteRuralHouse"));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(151, 30, 131, 16);
 		contentPane.add(lblNewLabel);
@@ -75,14 +71,14 @@ public class DeleteRuralHouseGUI extends JFrame {
 		contentPane.add(ruralHouseslist);
 		ruralHouseslist.setModel(listModel);
 
-		JButton btnDeleteRuralHouse = new JButton(ResourceBundle.getBundle(
-				"Etiquetas").getString("DeleteRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton btnDeleteRuralHouse = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnDeleteRuralHouse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				businessLogic.removeHouse(ruralHouseslist.getSelectedValue());
-				listModel.remove(ruralHouseslist.getSelectedIndex());
-				
+				if (ruralHouseslist.getSelectedValue() != null) {
+					businessLogic.removeHouse(ruralHouseslist.getSelectedValue());
+					listModel.remove(ruralHouseslist.getSelectedIndex());
+				}
 			}
 		});
 		btnDeleteRuralHouse.setBounds(138, 201, 157, 39);
@@ -101,7 +97,5 @@ public class DeleteRuralHouseGUI extends JFrame {
 		JOptionPane.showMessageDialog(this, msg);
 
 	}
-	
-	
-	
+
 }
