@@ -81,4 +81,5 @@ public interface ApplicationFacadeInterfaceWS  {
 	 public void removeHouse(RuralHouse rh);
 	 public Vector<Offer> getAllOffers();
 	 public Vector<RuralHouse> getOwnerHouses(Owner ow);
+	 public Vector<Offer>getOwnerOffers(Owner ow);
 }

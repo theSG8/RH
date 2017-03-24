@@ -2,6 +2,7 @@ package businessLogic;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.jws.WebMethod;
@@ -160,9 +161,9 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 	
 	public void addHouse(String des,String city,Owner current){
-		RuralHouse rh = new RuralHouse(des,city);
+		RuralHouse rh = new RuralHouse(des,city,current.getUsername());
 		DataAccess dbManager = new DataAccess();
-		//OJO ESTO COMPROBAR dbManager.storeHouse(rh,current);
+		dbManager.storeHouse(rh,current);
 		dbManager.close();
 	}
 	
@@ -215,11 +216,18 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		
 		public Vector<RuralHouse> getOwnerHouses(Owner ow){
 			DataAccess dbManager = new DataAccess();
-			 Owner dbOwner =dbManager.getOwner(ow.getUsername());
+			 Vector<RuralHouse> res =dbManager.getOwnerHouses(ow.getUsername());
 			 dbManager.close();
-			
-			return dbOwner.getRuralHouses();
+			return res;
 		}
 		
+		public Vector<Offer>getOwnerOffers(Owner ow){
+			
+			Vector<Offer> res  = new Vector<Offer>();
+			DataAccess dbManager = new DataAccess();
+			res =dbManager.getOwnerOffers(ow.getUsername());
+			 dbManager.close();
+			return res;
+		}
 
 }

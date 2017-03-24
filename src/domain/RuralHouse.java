@@ -26,15 +26,17 @@ public class RuralHouse implements Serializable {
 	private String description;
 	private String city; 
 	public Vector<Offer> offers;
+	public String OwnerName;
 
 	public RuralHouse() {
 		super();
 	}
 
-	public RuralHouse(String description, String city) {
+	public RuralHouse(String description, String city,String ow) {
 		this.description = description;
 		this.city = city;
 		offers=new Vector<Offer>();
+		OwnerName = ow;
 	}
 
 	public Integer getHouseNumber() {
@@ -128,6 +130,10 @@ public class RuralHouse implements Serializable {
 		}
 		return availableOffers;
 		
+	}
+	
+	public Vector<Offer> getAllOffers(){
+		return offers;
 	}
 	
 	

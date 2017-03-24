@@ -72,10 +72,10 @@ public class DataAccess {
 				db.remove(rh);
 			}
 
-			RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio");
-			RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna");
-			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo");
-			RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria");
+			RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio","none");
+			RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna","none");
+			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo","none");
+			RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria","none");
 
 			db.persist(rh1);
 			db.persist(rh2);
@@ -252,10 +252,55 @@ public class DataAccess {
 		return res;
 
 	}
+	
+	
+	public Vector<RuralHouse>getOwnerHouses(String username){
+		
+		Vector<RuralHouse> res = new Vector<RuralHouse>();
+		
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT r FROM RuralHouse r WHERE r.OwnerName =?1",
+				RuralHouse.class);
+		query.setParameter(1, username);
+		
+		List<RuralHouse> results = query.getResultList();
+		Iterator<RuralHouse> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+		
+		
+		return res;
+	}
 
 	public void close() {
 		db.close();
 		System.out.println("DataBase closed");
+	}
+
+	public Vector<Offer> getOwnerOffers(String username) {
+		
+	Vector<Offer> res = new Vector<Offer>();
+		
+		TypedQuery<RuralHouse> query = db.createQuery("SELECT r FROM RuralHouse r WHERE r.OwnerName =?1",
+				RuralHouse.class);
+		query.setParameter(1, username);
+		
+		List<RuralHouse> results = query.getResultList();
+		Iterator<RuralHouse> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			
+			
+			Iterator<Offer> itr2 = itr.next().getAllOffers().iterator();
+			while(itr2.hasNext()){
+				res.add(itr2.next());
+			}
+		}
+		
+		
+		return res;
+		
 	}
 
 }

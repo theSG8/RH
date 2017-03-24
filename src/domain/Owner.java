@@ -12,12 +12,13 @@ public class Owner implements User {
 	@Id
 	String username;
 	String password;
-	Vector<RuralHouse> ruralHouses = new Vector<RuralHouse>();
+	Vector<RuralHouse> ruralHouses; 
 
 	public Owner(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
+		ruralHouses =new Vector<RuralHouse>();
 	}
 
 	public String getUsername() {

@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
+import domain.Offer;
 import domain.Owner;
 import domain.RuralHouse;
 import businessLogic.ApplicationFacadeInterfaceWS;
@@ -82,18 +83,16 @@ public class OwnOptions extends JFrame {
 				.getBundle("Etiquetas").getString("SetOffer")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnSetOffer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				Vector<RuralHouse> all =businessLogic.getOwnerHouses(currentOwner);
-				if(all.isEmpty()){
+
+				Vector<RuralHouse> all = businessLogic
+						.getOwnerHouses(currentOwner);
+				if (all.isEmpty()) {
 					showDialog("No hay casas disponbles. Añadir casa primero");
+				} else {
+					SetAvailabilityGUI sa = new SetAvailabilityGUI(all);
+					sa.setVisible(true);
 				}
-				else{
-				SetAvailabilityGUI sa = new SetAvailabilityGUI(businessLogic
-						.getOwnerHouses(currentOwner));
-				sa.setVisible(true);
-				}
-			
-			
+
 			}
 		});
 		btnSetOffer.setBounds(105, 85, 207, 28);
@@ -104,9 +103,13 @@ public class OwnOptions extends JFrame {
 		btnDeleteOffer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				DeleteOfferGUI dg = new DeleteOfferGUI(bl, businessLogic
-						.getAllOffers());
-				dg.setVisible(true);
+				Vector<Offer> all = businessLogic.getOwnerOffers(currentOwner);
+				if (all.isEmpty()) {
+					showDialog("No se han creado ofertas para sus casas rurales");
+				} else {
+					DeleteOfferGUI dg = new DeleteOfferGUI(bl, all);
+					dg.setVisible(true);
+				}
 			}
 		});
 		btnDeleteOffer.setBounds(105, 121, 207, 28);
@@ -128,10 +131,16 @@ public class OwnOptions extends JFrame {
 				"Etiquetas").getString("DeleteRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnRemoveHouse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DeleteRuralHouseGUI dr = new DeleteRuralHouseGUI(bl,
-						businessLogic.getAllRuralHouses());
+				
+				
+				Vector<RuralHouse> all = businessLogic
+						.getOwnerHouses(currentOwner);
+				if (all.isEmpty()) {
+					showDialog("No hay casas disponbles. Añadir casa primero");
+				} else {
+				DeleteRuralHouseGUI dr = new DeleteRuralHouseGUI(bl,all);
 				dr.setVisible(true);
-
+				}
 			}
 		});
 		btnRemoveHouse.setBounds(105, 200, 207, 28);
