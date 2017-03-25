@@ -1,31 +1,26 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.DefaultComboBoxModel;
-
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
+import businessLogic.ApplicationFacadeInterfaceWS;
+import businessLogic.FacadeImplementationWS;
 import domain.Offer;
 import domain.Owner;
 import domain.RuralHouse;
-import businessLogic.ApplicationFacadeInterfaceWS;
-import businessLogic.FacadeImplementationWS;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class OwnOptions extends JFrame {
 
@@ -39,10 +34,10 @@ public class OwnOptions extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
-					OwnOptions frame = new OwnOptions(
-							new FacadeImplementationWS(), null);
+					OwnOptions frame = new OwnOptions(new FacadeImplementationWS(), null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,30 +59,24 @@ public class OwnOptions extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas")
-				.getString("OwnerOptions"));
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("OwnerOptions"));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel.setBounds(105, 32, 207, 28);
 		contentPane.add(lblNewLabel);
-		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas")
-				.getString("SetOffer"));
-		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas")
-				.getString("DeleteOffer"));
-		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas")
-				.getString("AddRuralHouse"));
-		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas")
-				.getString("DeleteRuralHouse"));
+		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas").getString("SetOffer"));
+		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas").getString("DeleteOffer"));
+		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas").getString("AddRuralHouse"));
+		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas").getString("DeleteRuralHouse"));
 
-		JButton btnSetOffer = new JButton(ResourceBundle
-				.getBundle("Etiquetas").getString("SetOffer")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton btnSetOffer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SetOffer")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnSetOffer.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				Vector<RuralHouse> all = businessLogic
-						.getOwnerHouses(currentOwner);
+				Vector<RuralHouse> all = businessLogic.getOwnerHouses(currentOwner);
 				if (all.isEmpty()) {
-					showDialog("No hay casas disponbles. Añadir casa primero");
+					showDialog("No hay casas disponbles. Aï¿½adir casa primero");
 				} else {
 					SetAvailabilityGUI sa = new SetAvailabilityGUI(all);
 					sa.setVisible(true);
@@ -98,9 +87,9 @@ public class OwnOptions extends JFrame {
 		btnSetOffer.setBounds(105, 85, 207, 28);
 		contentPane.add(btnSetOffer);
 
-		JButton btnDeleteOffer = new JButton(ResourceBundle.getBundle(
-				"Etiquetas").getString("DeleteOffer")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton btnDeleteOffer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteOffer")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnDeleteOffer.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
 				Vector<Offer> all = businessLogic.getOwnerOffers(currentOwner);
@@ -115,9 +104,9 @@ public class OwnOptions extends JFrame {
 		btnDeleteOffer.setBounds(105, 121, 207, 28);
 		contentPane.add(btnDeleteOffer);
 
-		JButton btnAddHouse = new JButton(ResourceBundle
-				.getBundle("Etiquetas").getString("AddRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton btnAddHouse = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AddRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnAddHouse.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				AddRuralHouseGUI ag = new AddRuralHouseGUI(businessLogic);
 				ag.setVisible(true);
@@ -127,24 +116,35 @@ public class OwnOptions extends JFrame {
 		btnAddHouse.setBounds(105, 161, 207, 28);
 		contentPane.add(btnAddHouse);
 
-		JButton btnRemoveHouse = new JButton(ResourceBundle.getBundle(
-				"Etiquetas").getString("DeleteRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton btnRemoveHouse = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
 		btnRemoveHouse.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				Vector<RuralHouse> all = businessLogic
-						.getOwnerHouses(currentOwner);
+
+				Vector<RuralHouse> all = businessLogic.getOwnerHouses(currentOwner);
 				if (all.isEmpty()) {
-					showDialog("No hay casas disponbles. Añadir casa primero");
+					showDialog("No hay casas disponbles. Aï¿½adir casa primero");
 				} else {
-				DeleteRuralHouseGUI dr = new DeleteRuralHouseGUI(bl,all);
-				dr.setVisible(true);
+					DeleteRuralHouseGUI dr = new DeleteRuralHouseGUI(bl, all);
+					dr.setVisible(true);
 				}
 			}
 		});
 		btnRemoveHouse.setBounds(105, 200, 207, 28);
 		contentPane.add(btnRemoveHouse);
+
+		JButton btnLogout = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OwnOptions.btnLogout.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnLogout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				LoginGUI lg = new LoginGUI(bl);
+				currentOwner = null;
+				lg.setVisible(true);
+				closeOwnOp(false);
+			}
+		});
+		btnLogout.setBounds(318, 261, 89, 23);
+		contentPane.add(btnLogout);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
@@ -153,6 +153,11 @@ public class OwnOptions extends JFrame {
 
 	private void showDialog(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
+
+	}
+
+	private void closeOwnOp(boolean cl) {
+		this.setVisible(cl);
 
 	}
 }

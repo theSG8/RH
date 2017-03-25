@@ -1,0 +1,31 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-03-25 16:13:42 #1 store] 
+Database 'C:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 30-30)
+
+[2017-03-25 16:13:42 #2 store] 
+Database 'C:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 3460@WINDOWS-7PN3ORU
+
+[2017-03-25 16:13:42 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-03-25 16:13:42 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-03-25 16:13:42 #5 type] 
+Type domain.Owner is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-03-25 16:14:14 #1 store] 
+Database 'C:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 14020@WINDOWS-7PN3ORU
+
+[2017-03-25 16:14:14 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-03-25 16:14:14 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-03-25 16:14:14 #4 type] 
+Type domain.Owner is not enhanced.
+
