@@ -1,8 +1,6 @@
 package businessLogic;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Vector;
 
 import javax.jws.WebMethod;
@@ -10,7 +8,7 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-
+import domain.Client;
 //import domain.Booking;
 import domain.Offer;
 import domain.Owner;
@@ -26,9 +24,8 @@ import exceptions.WrongPassword;
 @WebService(endpointInterface = "businessLogic.ApplicationFacadeInterfaceWS")
 public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
-
-
 	private int nextHouseNumber;
+
 	/**
 	 * 
 	 */
@@ -37,11 +34,10 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		ConfigXML c = ConfigXML.getInstance();
 		if (c.getDataBaseOpenMode().equals("initialize")) {
 			DataAccess dbManager = new DataAccess();
-			//dbManager.initializeDB();
+			// dbManager.initializeDB();
 			dbManager.close();
 		}
 
-		
 	}
 
 	/**
@@ -52,15 +48,11 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	 *            number, start day, last day and price
 	 * @return the created offer, or null, or an exception
 	 */
-	public Offer createOffer(RuralHouse ruralHouse, Date firstDay,
-			Date lastDay, float price) throws OverlappingOfferExists, BadDates {
-		System.out
-				.println(">> FacadeImplementationWS: createOffer=> ruralHouse= "
-						+ ruralHouse
-						+ " firstDay= "
-						+ firstDay
-						+ " lastDay="
-						+ lastDay + " price=" + price);
+	@Override
+	public Offer createOffer(RuralHouse ruralHouse, Date firstDay, Date lastDay, float price)
+			throws OverlappingOfferExists, BadDates {
+		System.out.println(">> FacadeImplementationWS: createOffer=> ruralHouse= " + ruralHouse + " firstDay= "
+				+ firstDay + " lastDay=" + lastDay + " price=" + price);
 
 		DataAccess dbManager = new DataAccess();
 		Offer o = null;
@@ -69,16 +61,17 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 			throw new BadDates();
 		}
 
-		boolean b = dbManager.existsOverlappingOffer(ruralHouse, firstDay,
-				lastDay);
-		if (!b)
+		boolean b = dbManager.existsOverlappingOffer(ruralHouse, firstDay, lastDay);
+		if (!b) {
 			o = dbManager.createOffer(ruralHouse, firstDay, lastDay, price);
+		}
 
 		dbManager.close();
 		System.out.println("<< FacadeImplementationWS: createOffer=> O= " + o);
 		return o;
 	}
 
+	@Override
 	public Vector<RuralHouse> getAllRuralHouses() {
 		System.out.println(">> FacadeImplementationWS: getAllRuralHouses");
 
@@ -105,6 +98,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	 *         is no overlapping offer
 	 */
 
+	@Override
 	@WebMethod
 	public Vector<Offer> getOffers(RuralHouse rh, Date firstDay, Date lastDay) {
 
@@ -123,6 +117,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 
+	@Override
 	public void initializeBD() {
 
 		DataAccess dbManager = new DataAccess();
@@ -131,6 +126,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 
+	@Override
 	public void addNewUser(String user, String pass) throws UserAlreadyExists {
 		Owner ow = new Owner(user, pass);
 		DataAccess dbManager = new DataAccess();
@@ -139,36 +135,34 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 
-	public Owner makeOwnerLogin(String user, String pass)
-			throws WrongPassword, UserNotExist {
+	@Override
+	public Owner makeOwnerLogin(String user, String pass) throws WrongPassword, UserNotExist {
 		DataAccess dbManager = new DataAccess();
 		Owner ow = dbManager.getOwner(user);
-		if (ow == null){
+		if (ow == null) {
 			dbManager.close();
 			throw new UserNotExist();
-			}
-		else {
-			if (ow.checkPassword(pass)){
+		} else {
+			if (ow.checkPassword(pass)) {
 				dbManager.close();
 				return ow;
-			}
-			else{
+			} else {
 				dbManager.close();
 				throw new WrongPassword();
 			}
 		}
 
 	}
-	
-	public void addHouse(String des,String city,Owner current){
-		RuralHouse rh = new RuralHouse(des,city,current.getUsername());
+
+	@Override
+	public void addHouse(String des, String city, Owner current) {
+		RuralHouse rh = new RuralHouse(des, city, current.getUsername());
 		DataAccess dbManager = new DataAccess();
-		dbManager.storeHouse(rh,current);
+		dbManager.storeHouse(rh, current);
 		dbManager.close();
 	}
-	
 
-	// Añade un nuevo owner, llamando al metodo de la base de datos
+	// Aï¿½ade un nuevo owner, llamando al metodo de la base de datos
 	public void addNewOwner(String username, String password) throws UserAlreadyExists {
 		Owner o = new Owner(username, password);
 		DataAccess dbManager = new DataAccess();
@@ -176,7 +170,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		dbManager.close();
 	}
 
-	// Comprueba si dos contraseñas coinciden
+	// Comprueba si dos contraseï¿½as coinciden
 	public boolean checkDoublePassword(String pw1, String pw2) throws PasswordsDoesNotMatch {
 		if (pw1.equals(pw2)) {
 			return true;
@@ -185,49 +179,65 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		}
 	}
 
-	// Comprueba las contraseñas del registro de owner, y si coinciden añade ese
+	// Comprueba las contraseï¿½as del registro de owner, y si coinciden aï¿½ade ese
 	// owner a la BD
+	@Override
 	public void checkAddOwner(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists {
 		checkDoublePassword(pw1, pw2);
 		addNewOwner(username, pw1);
 	}
-	
-	
+
+	public void checkAddClient(String username, String pw1, String pw2)
+			throws PasswordsDoesNotMatch, UserAlreadyExists {
+		checkDoublePassword(pw1, pw2);
+		addNewClient(username, pw1);
+	}
+
+	public void addNewClient(String username, String password) throws UserAlreadyExists {
+		Client c = new Client(username, password);
+		DataAccess dbManager = new DataAccess();
+		dbManager.storeNewClient(c);
+		dbManager.close();
+	}
+
+	@Override
 	public void removeOffer(Offer of) {
-		  DataAccess dbManager = new DataAccess();
-		  dbManager.removeOffer(of);
-		  dbManager.close();
-		 }
+		DataAccess dbManager = new DataAccess();
+		dbManager.removeOffer(of);
+		dbManager.close();
+	}
 
-		 public void removeHouse(RuralHouse rh) {
-		  DataAccess dbManager = new DataAccess();
-		  dbManager.removeHouse(rh);
-		  dbManager.close();
-		 }
+	@Override
+	public void removeHouse(RuralHouse rh) {
+		DataAccess dbManager = new DataAccess();
+		dbManager.removeHouse(rh);
+		dbManager.close();
+	}
 
-		@Override
-		public Vector<Offer> getAllOffers() {
-			DataAccess dbManager = new DataAccess();
-			 Vector<Offer> res =dbManager.getAllOffers();
-			  dbManager.close();
-			  return res;
-		}
-		
-		
-		public Vector<RuralHouse> getOwnerHouses(Owner ow){
-			DataAccess dbManager = new DataAccess();
-			 Vector<RuralHouse> res =dbManager.getOwnerHouses(ow.getUsername());
-			 dbManager.close();
-			return res;
-		}
-		
-		public Vector<Offer>getOwnerOffers(Owner ow){
-			
-			Vector<Offer> res  = new Vector<Offer>();
-			DataAccess dbManager = new DataAccess();
-			res =dbManager.getOwnerOffers(ow.getUsername());
-			 dbManager.close();
-			return res;
-		}
+	@Override
+	public Vector<Offer> getAllOffers() {
+		DataAccess dbManager = new DataAccess();
+		Vector<Offer> res = dbManager.getAllOffers();
+		dbManager.close();
+		return res;
+	}
+
+	@Override
+	public Vector<RuralHouse> getOwnerHouses(Owner ow) {
+		DataAccess dbManager = new DataAccess();
+		Vector<RuralHouse> res = dbManager.getOwnerHouses(ow.getUsername());
+		dbManager.close();
+		return res;
+	}
+
+	@Override
+	public Vector<Offer> getOwnerOffers(Owner ow) {
+
+		Vector<Offer> res = new Vector<Offer>();
+		DataAccess dbManager = new DataAccess();
+		res = dbManager.getOwnerOffers(ow.getUsername());
+		dbManager.close();
+		return res;
+	}
 
 }

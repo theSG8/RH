@@ -104,6 +104,13 @@ public class RegisterGUI extends JFrame {
 						showDialog(ResourceBundle.getBundle("Etiquetas").getString("CorrectRegister"));
 						closeFrame();
 					}
+					if (rdbtnClient.isSelected()) {
+						businessLogic.checkAddClient(usernameField.getText(),
+								String.valueOf(passwordField.getPassword()),
+								String.valueOf(passwordField1.getPassword()));
+						showDialog(ResourceBundle.getBundle("Etiquetas").getString("CorrectRegister"));
+						closeFrame();
+					}
 				} catch (UserAlreadyExists e) {
 					showDialog(ResourceBundle.getBundle("Etiquetas").getString("UserAlreadyExists"));
 				} catch (PasswordsDoesNotMatch e) {
@@ -126,7 +133,7 @@ public class RegisterGUI extends JFrame {
 
 	protected void closeFrame() {
 		this.setVisible(false);
-		
+
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
