@@ -110,13 +110,13 @@ public class LoginGUI extends JFrame {
 					}
 
 				}
-				if (ownerRB.isSelected()) {
+				if (clientRB.isSelected()) {
 
 					try {
 						Client cl = businessLogic.makeClientLogin(userField.getText(),
 								String.valueOf(passwordField.getPassword()));
-						// CliOptions co = new CliOptions(bl, cl);
-						// co.setVisible(true);
+						CliOptions co = new CliOptions(bl, cl);
+						co.setVisible(true);
 						closeLogin();
 
 					} catch (WrongPassword e) {
