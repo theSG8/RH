@@ -155,6 +155,25 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
+	public Client makeClientLogin(String user, String pass) throws WrongPassword, UserNotExist {
+		DataAccess dbManager = new DataAccess();
+		Client cl = dbManager.getClient(user);
+		if (cl == null) {
+			dbManager.close();
+			throw new UserNotExist();
+		} else {
+			if (cl.checkPassword(pass)) {
+				dbManager.close();
+				return cl;
+			} else {
+				dbManager.close();
+				throw new WrongPassword();
+			}
+		}
+
+	}
+
+	@Override
 	public void addHouse(String des, String city, Owner current) {
 		RuralHouse rh = new RuralHouse(des, city, current.getUsername());
 		DataAccess dbManager = new DataAccess();
@@ -187,12 +206,14 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		addNewOwner(username, pw1);
 	}
 
+	@Override
 	public void checkAddClient(String username, String pw1, String pw2)
 			throws PasswordsDoesNotMatch, UserAlreadyExists {
 		checkDoublePassword(pw1, pw2);
 		addNewClient(username, pw1);
 	}
 
+	@Override
 	public void addNewClient(String username, String password) throws UserAlreadyExists {
 		Client c = new Client(username, password);
 		DataAccess dbManager = new DataAccess();

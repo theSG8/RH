@@ -1,37 +1,31 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
-import javax.swing.JRadioButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-import domain.Owner;
-import domain.User;
-import exceptions.UserNotExist;
-import exceptions.WrongPassword;
 import businessLogic.ApplicationFacadeInterfaceWS;
 import businessLogic.FacadeImplementationWS;
+import domain.Client;
+import domain.Owner;
+import exceptions.UserNotExist;
+import exceptions.WrongPassword;
 
 public class LoginGUI extends JFrame {
 
-	public static User currentUser;
 	private JPanel contentPane;
 	private JTextField userField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -49,6 +43,7 @@ public class LoginGUI extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					LoginGUI frame = new LoginGUI(new FacadeImplementationWS());
@@ -82,31 +77,30 @@ public class LoginGUI extends JFrame {
 		passwordField.setBounds(223, 74, 182, 21);
 		contentPane.add(passwordField);
 
-		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas")
-				.getString("User"));
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("User"));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setBounds(89, 38, 78, 16);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas")
-				.getString("Password"));
+		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Password"));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(89, 76, 78, 16);
 		contentPane.add(lblNewLabel_1);
 
-		JButton loginButton = new JButton(ResourceBundle.getBundle("Etiquetas")
-				.getString("Enter"));
+		JButton loginButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Enter"));
 		loginButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
 				if (ownerRB.isSelected()) {
 
 					try {
-						Owner ow =businessLogic.makeOwnerLogin(userField.getText(), String.valueOf(passwordField.getPassword()));
-						OwnOptions oo= new OwnOptions(bl,ow);
+						Owner ow = businessLogic.makeOwnerLogin(userField.getText(),
+								String.valueOf(passwordField.getPassword()));
+						OwnOptions oo = new OwnOptions(bl, ow);
 						oo.setVisible(true);
 						closeLogin();
-						
+
 					} catch (WrongPassword e) {
 						showDialog(ResourceBundle.getBundle("Etiquetas").getString("WrongPassword"));
 
@@ -116,6 +110,23 @@ public class LoginGUI extends JFrame {
 					}
 
 				}
+				if (ownerRB.isSelected()) {
+
+					try {
+						Client cl = businessLogic.makeClientLogin(userField.getText(),
+								String.valueOf(passwordField.getPassword()));
+						// CliOptions co = new CliOptions(bl, cl);
+						// co.setVisible(true);
+						closeLogin();
+
+					} catch (WrongPassword e) {
+						showDialog(ResourceBundle.getBundle("Etiquetas").getString("WrongPassword"));
+
+					} catch (UserNotExist e) {
+						showDialog(ResourceBundle.getBundle("Etiquetas").getString("UserDoesNotExist"));
+
+					}
+				}
 
 			}
 		});
@@ -123,35 +134,32 @@ public class LoginGUI extends JFrame {
 		loginButton.setBounds(163, 167, 147, 52);
 		contentPane.add(loginButton);
 
-		JButton registerButton = new JButton(ResourceBundle.getBundle(
-				"Etiquetas").getString("Register"));
+		JButton registerButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		registerButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				RegisterGUI rg = new RegisterGUI(businessLogic);
 				rg.setVisible(true);
-				
+
 			}
 		});
 		registerButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		registerButton.setBounds(375, 249, 109, 31);
 		contentPane.add(registerButton);
 
-		JLabel lblNewLabel_2 = new JLabel(ResourceBundle.getBundle("Etiquetas")
-				.getString("NoAccount"));
+		JLabel lblNewLabel_2 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("NoAccount"));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_2.setBounds(12, 256, 351, 16);
 		contentPane.add(lblNewLabel_2);
 
-		ownerRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas")
-				.getString("Owner"));
+		ownerRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("Owner"));
 		ownerRB.setSelected(true);
 		buttonGroup.add(ownerRB);
 		ownerRB.setBounds(89, 122, 127, 25);
 		contentPane.add(ownerRB);
 
-		clientRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas")
-				.getString("Client"));
+		clientRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("Client"));
 		buttonGroup.add(clientRB);
 		clientRB.setBounds(278, 122, 127, 25);
 		contentPane.add(clientRB);
@@ -165,10 +173,10 @@ public class LoginGUI extends JFrame {
 		JOptionPane.showMessageDialog(this, msg);
 
 	}
-	
-	private void closeLogin(){
+
+	private void closeLogin() {
 		this.setVisible(false);
-		
+
 	}
-	
+
 }

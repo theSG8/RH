@@ -1,24 +1,23 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Owner implements User {
+public class Owner {
 
 	@Id
 	String username;
 	String password;
-	Vector<RuralHouse> ruralHouses; 
+	Vector<RuralHouse> ruralHouses;
 
 	public Owner(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		ruralHouses =new Vector<RuralHouse>();
+		ruralHouses = new Vector<RuralHouse>();
 	}
 
 	public String getUsername() {
@@ -51,7 +50,7 @@ public class Owner implements User {
 
 	public boolean checkPassword(String password) {
 
-		System.out.println("La pass es:"+ this.password +" y el intento es " + password);
+		System.out.println("La pass es:" + this.password + " y el intento es " + password);
 		if (this.password.equals(password)) {
 			return true;
 		} else {

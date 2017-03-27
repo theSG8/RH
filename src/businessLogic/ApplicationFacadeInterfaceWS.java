@@ -7,6 +7,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 //import domain.Booking;
+import domain.Client;
 import domain.Offer;
 import domain.Owner;
 import domain.RuralHouse;
@@ -89,4 +90,6 @@ public interface ApplicationFacadeInterfaceWS {
 	public void checkAddClient(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists;
 
 	public void addNewClient(String username, String password) throws UserAlreadyExists;
+
+	public Client makeClientLogin(String user, String pass) throws WrongPassword, UserNotExist;
 }

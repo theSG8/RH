@@ -329,4 +329,8 @@ public class DataAccess {
 
 	}
 
+	public Client getClient(String username) {
+		return db.find(Client.class, username);
+	}
+
 }
