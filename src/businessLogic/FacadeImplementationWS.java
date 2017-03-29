@@ -174,11 +174,13 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public void addHouse(String des, String city, Owner current) {
+	public RuralHouse addHouse(String des, String city, Owner current) {
 		RuralHouse rh = new RuralHouse(des, city, current.getUsername());
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeHouse(rh, current);
 		dbManager.close();
+		
+		return rh;
 	}
 
 	// A�ade un nuevo owner, llamando al metodo de la base de datos
