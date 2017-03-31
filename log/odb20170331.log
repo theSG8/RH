@@ -1,0 +1,20 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-03-31 11:46:33 #1 store] 
+Database 'C:\Users\ehu\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 50-50)
+
+[2017-03-31 11:46:33 #2 store] 
+Database 'C:\Users\ehu\git\RepositoryRH\resources\ruralHouses.odb' is opened by 4676@U030075
+
+[2017-03-31 11:46:34 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-03-31 11:46:34 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-03-31 11:46:34 #5 type] 
+Type domain.Owner is not enhanced.
+
+[2017-03-31 11:46:34 #6 type] 
+Type domain.Client is not enhanced.
+

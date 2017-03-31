@@ -1,4 +1,5 @@
 /.DS_Store
+/35.jpg
 /Etiquetas.properties
 /Etiquetas_en.properties
 /Etiquetas_es.properties
@@ -6,12 +7,7 @@
 /businessLogic/
 /configuration/
 /dataAccess/
+/default.png
 /domain/
 /exceptions/
 /gui/
-/538540-home_512x512.png
-/default
-/default.png
-/null
-/null.png
-/35.jpg
