@@ -2,8 +2,11 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -14,6 +17,7 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
+import businessLogic.ApplicationFacadeInterfaceWS;
 import domain.RuralHouse;
 
 import java.awt.Rectangle;
@@ -25,7 +29,10 @@ public class ReserveOfferGui extends JFrame {
 	private DefaultTableModel tableModel;
 	private String[] columnNames = new String[]{"Oferta","PrimerDia","UltimoDia","Precio"};
 	private  RuralHouse currentHouse;
-
+	private JLabel lbldes;
+	private JLabel lblHouseName;
+	private JLabel lblImg;
+	private ApplicationFacadeInterfaceWS businessLogic;
 	/**
 	 * Launch the application.
 	 */
@@ -33,7 +40,7 @@ public class ReserveOfferGui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReserveOfferGui frame = new ReserveOfferGui(null);
+					ReserveOfferGui frame = new ReserveOfferGui(null,new RuralHouse());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +52,8 @@ public class ReserveOfferGui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReserveOfferGui(RuralHouse rh) {
+	public ReserveOfferGui(ApplicationFacadeInterfaceWS bl , RuralHouse rh) {
+		setBusinessLogic(bl);
 		currentHouse=rh;
 		SetLabelValues();
 		
@@ -56,15 +64,15 @@ public class ReserveOfferGui extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNombreDeLa = new JLabel("Nombre de la casa");
-		lblNombreDeLa.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNombreDeLa.setBounds(38, 27, 206, 34);
-		contentPane.add(lblNombreDeLa);
+		 lblHouseName = new JLabel("Nombre de la casa");
+		lblHouseName.setFont(new Font("Arial", Font.BOLD, 18));
+		lblHouseName.setBounds(38, 27, 206, 34);
+		contentPane.add(lblHouseName);
 		
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n:  ");
-		lblDireccin.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDireccin.setBounds(38, 94, 86, 20);
-		contentPane.add(lblDireccin);
+		JLabel lblDescripcion = new JLabel("Direcci\u00F3n:  ");
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescripcion.setBounds(38, 94, 86, 20);
+		contentPane.add(lblDescripcion);
 		
 		JLabel lblOfertasDisponibles = new JLabel("Ofertas disponibles");
 		lblOfertasDisponibles.setFont(new Font("Arial", Font.BOLD, 18));
@@ -78,7 +86,7 @@ public class ReserveOfferGui extends JFrame {
 		
 		table = new JTable();
 		table.setBounds(68, 234, 554, 135);
-		contentPane.add(table);
+		//contentPane.add(table);
 	    scrollPane.setViewportView(table);
 	    
 		tableModel = new DefaultTableModel(
@@ -92,21 +100,40 @@ public class ReserveOfferGui extends JFrame {
 		lblOBienBusque.setBounds(68, 417, 176, 14);
 		contentPane.add(lblOBienBusque);
 		
-		JLabel lblImg = new JLabel("");
+	    lblImg = new JLabel("");
 		lblImg.setBounds(490, 30, 210, 180);
 		contentPane.add(lblImg);
 		
-		JLabel lbldir = new JLabel("%dir%");
-		lbldir.setBounds(134, 98, 46, 14);
-		contentPane.add(lbldir);
+		lbldes = new JLabel("%dir%");
+		lbldes.setBounds(134, 98, 46, 14);
+		contentPane.add(lbldes);
 		
 		
 	
 		
 	}
 
+	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
+		businessLogic = bl;
+	}
+	
 	private void SetLabelValues() {
 		
+		lblHouseName.setText(currentHouse.getHouseNumber() + " : " + currentHouse.getCity());
+		lbldes.setText(currentHouse.getDescription());
+		ImageIcon image = businessLogic.getHouseImage(currentHouse);
+		if (image==null){
+			showDialog("Error al encontrar la imagen");
+		}
+		else {
+			image.setImage(image.getImage().getScaledInstance(lblImg.getWidth(), lblImg.getHeight(), Image.SCALE_SMOOTH));
+			lblImg.setIcon(image);		
+		}
 		
+	}
+	
+	private void showDialog(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+
 	}
 }

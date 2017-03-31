@@ -41,6 +41,10 @@ public class CliOptions extends JFrame {
 		});
 		btnLogout.setBounds(318, 261, 89, 23);
 		contentPane.add(btnLogout);
+		
+		JButton btnBuscarOferta = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CliOptions.btnBuscarOferta.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnBuscarOferta.setBounds(108, 51, 158, 23);
+		contentPane.add(btnBuscarOferta);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
@@ -52,5 +56,4 @@ public class CliOptions extends JFrame {
 		this.setVisible(cl);
 
 	}
-
 }

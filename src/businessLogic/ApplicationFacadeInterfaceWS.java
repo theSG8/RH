@@ -6,6 +6,8 @@ import java.util.Vector;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import javax.swing.ImageIcon;
+
 //import domain.Booking;
 import domain.Client;
 import domain.Offer;
@@ -92,4 +94,6 @@ public interface ApplicationFacadeInterfaceWS {
 	public void addNewClient(String username, String password) throws UserAlreadyExists;
 
 	public Client makeClientLogin(String user, String pass) throws WrongPassword, UserNotExist;
+
+	ImageIcon getHouseImage(RuralHouse currentHouse);
 }

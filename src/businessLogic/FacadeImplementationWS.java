@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.swing.ImageIcon;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
@@ -261,6 +262,14 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		res = dbManager.getOwnerOffers(ow.getUsername());
 		dbManager.close();
 		return res;
+	}
+
+	@Override
+	public ImageIcon getHouseImage(RuralHouse currentHouse) {
+		
+		
+		
+		return new ImageIcon("img/"+currentHouse.getHouseNumber() +".png");
 	}
 
 }
