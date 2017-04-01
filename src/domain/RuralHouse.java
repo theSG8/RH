@@ -27,7 +27,11 @@ public class RuralHouse implements Serializable {
 	private String city; 
 	public Vector<Offer> offers;
 	public String OwnerName;
-
+	public String nKitchens;
+	public String nBedrooms; 
+	public String nBathrooms;
+	public String nDrooms;
+	public String nParking;
 
 	
 
@@ -35,9 +39,15 @@ public class RuralHouse implements Serializable {
 		super();
 	}
 
-	public RuralHouse(String description, String city,String ow) {
+	public RuralHouse(String description, String city,String ow, String nKitchens, String nBedrooms, String nBathrooms,
+			String nDrooms, String nParking)  {
 		this.description = description;
 		this.city = city;
+		this.nKitchens = nKitchens;
+		this.nBedrooms = nBedrooms;
+		this.nBathrooms = nBathrooms;
+		this.nDrooms = nDrooms;
+		this.nParking = nParking;
 		offers=new Vector<Offer>();
 		OwnerName = ow;
 		
@@ -66,6 +76,46 @@ public class RuralHouse implements Serializable {
 	
 	public void setCity(String city) {
 		this.city=city;
+	}
+	
+	public String getnKitchens() {
+		return nKitchens;
+	}
+	
+	public void setnKitchens(String nKitchens) {
+		this.nKitchens=nKitchens;
+	}
+	
+	public String getnBedrooms() {
+		return nBedrooms;
+	}
+	
+	public void setnBedrooms(String nBedrooms) {
+		this.nBedrooms=nBedrooms;
+	}
+	
+	public String getnBathrooms() {
+		return nBathrooms;
+	}
+	
+	public void setnBathrooms(String nBathrooms) {
+		this.nBathrooms=nBathrooms;
+	}
+	
+	public String getnDrooms() {
+		return nDrooms;
+	}
+	
+	public void setnDrooms(String nDrooms) {
+		this.nDrooms=nDrooms;
+	}
+	
+	public String getnParking() {
+		return nParking;
+	}
+	
+	public void setnParking(String nParking) {
+		this.nParking=nParking;
 	}
 
 	

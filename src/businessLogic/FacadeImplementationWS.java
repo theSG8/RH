@@ -175,11 +175,11 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public RuralHouse addHouse(String des, String city, Owner current) {
-		RuralHouse rh = new RuralHouse(des, city, current.getUsername());
+	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms, String nBathRooms, String nDrooms, String nParking) {
+		RuralHouse rh = new RuralHouse(des, city, current.getUsername(), nKitchens, nBedRooms, nBathRooms, nDrooms, nParking);
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeHouse(rh, current);
-		dbManager.close();
+		dbManager.close(); 
 		
 		return rh;
 	}

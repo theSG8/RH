@@ -75,7 +75,7 @@ public interface ApplicationFacadeInterfaceWS {
 
 	public Owner makeOwnerLogin(String user, String pass) throws WrongPassword, UserNotExist;
 
-	public RuralHouse addHouse(String des, String city, Owner current);
+	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms, String nBathRooms, String nDrooms, String nParking);
 
 	public void checkAddOwner(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists;
 

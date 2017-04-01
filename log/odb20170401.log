@@ -1,0 +1,20 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-01 17:10:30 #1 store] 
+Database 'C:\Users\xabie\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 51-51)
+
+[2017-04-01 17:10:30 #2 store] 
+Database 'C:\Users\xabie\git\RepositoryRH\resources\ruralHouses.odb' is opened by 13176@MSI
+
+[2017-04-01 17:10:30 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-01 17:10:30 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-01 17:10:30 #5 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-01 17:10:30 #6 type] 
+Type domain.Client is not enhanced.
+

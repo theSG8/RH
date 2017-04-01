@@ -68,7 +68,7 @@ public class DataAccess {
 				db.remove(rh);
 			}
 
-			RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio", "none");
+			/*RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio", "none");
 			RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna", "none");
 			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo", "none");
 			RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria", "none");
@@ -76,7 +76,7 @@ public class DataAccess {
 			db.persist(rh1);
 			db.persist(rh2);
 			db.persist(rh3);
-			db.persist(rh4);
+			db.persist(rh4);*/
 
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
