@@ -272,4 +272,15 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		return new ImageIcon("img/"+currentHouse.getHouseNumber() +".png");
 	}
 
+	@Override
+	public Vector<Offer> getHouseOffers(RuralHouse rh) {
+		DataAccess dbManager = new DataAccess();
+		Vector<Offer> offers = new Vector<Offer>();
+		offers = dbManager.getHouseOffers(rh);
+		dbManager.close();
+		return offers;
+	}
+	
+
+
 }

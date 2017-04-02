@@ -95,5 +95,7 @@ public interface ApplicationFacadeInterfaceWS {
 
 	public Client makeClientLogin(String user, String pass) throws WrongPassword, UserNotExist;
 
-	ImageIcon getHouseImage(RuralHouse currentHouse);
+	public ImageIcon getHouseImage(RuralHouse currentHouse);
+	
+	public Vector<Offer> getHouseOffers(RuralHouse rh);
 }

@@ -229,7 +229,7 @@ public class AddRuralHouseGUI extends JFrame {
 	protected void copyImageOnProject(String imageName) {
 		
 		String extension =current_image.getName().substring(current_image.getName().lastIndexOf("."),current_image.getName().length());
-		String output= "img/"+imageName+extension;
+		String output= "img/"+imageName+".png";
 		File o =new File(output);
 		try {
 			Files.copy(current_image.toPath(), o.toPath());

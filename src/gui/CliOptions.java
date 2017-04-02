@@ -3,14 +3,17 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import domain.Client;
+import domain.RuralHouse;
 
 public class CliOptions extends JFrame {
 
@@ -43,6 +46,21 @@ public class CliOptions extends JFrame {
 		contentPane.add(btnLogout);
 		
 		JButton btnBuscarOferta = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CliOptions.btnBuscarOferta.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnBuscarOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Vector<RuralHouse> houses =businessLogic.getAllRuralHouses();
+				if(houses.isEmpty()){
+					showDialog("No hay casas rurales");
+					
+				}
+				else{
+					AllHouses ah = new AllHouses(businessLogic, houses);
+					ah.setVisible(true);
+				}
+				
+			}
+		});
 		btnBuscarOferta.setBounds(108, 51, 158, 23);
 		contentPane.add(btnBuscarOferta);
 	}
@@ -56,4 +74,9 @@ public class CliOptions extends JFrame {
 		this.setVisible(cl);
 
 	}
+	private void showDialog(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+
+	}
+	
 }

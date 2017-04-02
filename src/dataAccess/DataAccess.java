@@ -333,4 +333,11 @@ public class DataAccess {
 		return db.find(Client.class, username);
 	}
 
+	public Vector<Offer> getHouseOffers(RuralHouse rh) {
+		Vector<Offer> res = new Vector<>();
+		RuralHouse rhn = db.find(RuralHouse.class, rh.getHouseNumber());
+		res =rhn.getAllOffers();
+		return res;
+	}
+
 }

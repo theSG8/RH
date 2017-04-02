@@ -18,9 +18,11 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
+import domain.Offer;
 import domain.RuralHouse;
 
 import java.awt.Rectangle;
+import java.util.Vector;
 
 public class ReserveOfferGui extends JFrame {
 
@@ -55,7 +57,7 @@ public class ReserveOfferGui extends JFrame {
 	public ReserveOfferGui(ApplicationFacadeInterfaceWS bl , RuralHouse rh) {
 		setBusinessLogic(bl);
 		currentHouse=rh;
-		SetLabelValues();
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 848, 508);
@@ -69,7 +71,7 @@ public class ReserveOfferGui extends JFrame {
 		lblHouseName.setBounds(38, 27, 206, 34);
 		contentPane.add(lblHouseName);
 		
-		JLabel lblDescripcion = new JLabel("Direcci\u00F3n:  ");
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:  ");
 		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDescripcion.setBounds(38, 94, 86, 20);
 		contentPane.add(lblDescripcion);
@@ -93,6 +95,7 @@ public class ReserveOfferGui extends JFrame {
     			null,
             	columnNames);	
 		
+		
 		table.setModel(tableModel);
 		
 		
@@ -105,11 +108,28 @@ public class ReserveOfferGui extends JFrame {
 		contentPane.add(lblImg);
 		
 		lbldes = new JLabel("%dir%");
-		lbldes.setBounds(134, 98, 46, 14);
+		lbldes.setBounds(134, 98, 122, 14);
 		contentPane.add(lbldes);
 		
+		SetLabelValues();
+		SetOffers();
 		
-	
+	}
+
+	private void SetOffers() {
+		Vector <Offer> offers =businessLogic.getHouseOffers(currentHouse);
+		tableModel.setDataVector(null, columnNames);
+		if(offers.isEmpty())showDialog("vacio");
+		for (Offer of : offers){
+			Vector<Object> row = new Vector<Object>();
+			
+			
+			row.add(of.getOfferNumber());
+			row.add(of.getFirstDay());
+			row.add(of.getLastDay());
+			row.add(of.getPrice());
+			tableModel.addRow(row);
+		}
 		
 	}
 
