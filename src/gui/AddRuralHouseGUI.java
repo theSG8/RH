@@ -99,7 +99,7 @@ public class AddRuralHouseGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if (Integer.parseInt(dormTextField.getText()) >= 3 && Integer.parseInt(baTextField.getText()) >= 2
-							&& Integer.parseInt(cocTextField.getText()) >= 1 && cityTextField.getText() != null) {
+							&& Integer.parseInt(cocTextField.getText()) >= 1 && !cityTextField.getText().equals("")) {
 						RuralHouse rh = businessLogic.addHouse(descriptionTextField.getText(), cityTextField.getText(),
 								OwnOptions.currentOwner, cocTextField.getText(), dormTextField.getText(),
 								baTextField.getText(), comTextField.getText(), garTextField.getText());
@@ -114,9 +114,11 @@ public class AddRuralHouseGUI extends JFrame {
 						copyImageOnProject(String.valueOf(rh.getHouseNumber()));
 						setDefaultImage();
 					} else {
-						if (cityTextField.getText() == null) {
+						if (cityTextField.getText().equals("")) {
 							showDialog("Una casa rural debe tener una ciudad");
-						} else {
+						}
+						if (Integer.parseInt(dormTextField.getText()) < 3 || Integer.parseInt(baTextField.getText()) < 2
+								|| Integer.parseInt(cocTextField.getText()) < 1) {
 							showDialog("Una casa rural requiere de por lo menos 1 cocina, 3 habitaciones y 2 baños");
 						}
 					}
