@@ -44,7 +44,7 @@ public class BookOfferGui extends JFrame {
 	private JLabel lblNewLabel;
 	private JLabel lblNBaos;
 	private JLabel lblNcoc;
-	private JLabel lnlNbañ;
+	private JLabel lnlNban;
 	private JLabel lblNDor;
 	private JLabel lblNDormitorios;
 	private JLabel lblNGar;
@@ -116,7 +116,7 @@ public class BookOfferGui extends JFrame {
 		contentPane.add(lblOBienBusque);
 
 		lblImg = new JLabel("");
-		lblImg.setBounds(490, 30, 210, 180);
+		lblImg.setBounds(603, 22, 299, 230);
 		contentPane.add(lblImg);
 
 		lbldes = new JLabel("%dir%");
@@ -191,7 +191,7 @@ public class BookOfferGui extends JFrame {
 
 			}
 		});
-		btnReservar.setBounds(642, 278, 215, 47);
+		btnReservar.setBounds(650, 277, 215, 47);
 		contentPane.add(btnReservar);
 		
 		lblNewLabel = new JLabel("N\u00BA Cocinas");
@@ -206,9 +206,9 @@ public class BookOfferGui extends JFrame {
 		lblNcoc.setBounds(134, 124, 122, 14);
 		contentPane.add(lblNcoc);
 		
-		lnlNbañ = new JLabel((String) null);
-		lnlNbañ.setBounds(134, 151, 122, 14);
-		contentPane.add(lnlNbañ);
+		lnlNban = new JLabel((String) null);
+		lnlNban.setBounds(134, 151, 122, 14);
+		contentPane.add(lnlNban);
 		
 		lblNDor = new JLabel((String) null);
 		lblNDor.setBounds(378, 100, 122, 14);
@@ -279,7 +279,7 @@ public class BookOfferGui extends JFrame {
 		lblHouseName.setText(currentHouse.getHouseNumber() + " : " + currentHouse.getCity());
 		lbldes.setText(currentHouse.getDescription());
 		lblNcoc.setText(currentHouse.getnKitchens());
-		lnlNbañ.setText(currentHouse.getnBathrooms());
+		lnlNban.setText(currentHouse.getnBathrooms());
 		lblNDor.setText(currentHouse.getnBedrooms());
 		lblNGar.setText(currentHouse.getnParking());
 		lblNComed.setText(currentHouse.getnDrooms());

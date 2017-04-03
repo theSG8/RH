@@ -69,6 +69,7 @@ public class AllHouses extends JFrame {
 				if (list.getSelectedValue() != null) {
 					BookOfferGui rog = new BookOfferGui(businessLogic, list.getSelectedValue());
 					rog.setVisible(true);
+					close();
 
 				} else {
 					showDialog("No se ha seleccionado ninguna casa");
@@ -89,5 +90,8 @@ public class AllHouses extends JFrame {
 		JOptionPane.showMessageDialog(this, msg);
 
 	}
-
+	private void close(){
+		
+		this.setVisible(false);
+	}
 }
