@@ -25,6 +25,7 @@ public class RuralHouse implements Serializable {
 	private Integer houseNumber;
 	private String description;
 	private String city; 
+	@OneToMany(fetch=FetchType.EAGER)
 	public Vector<Offer> offers;
 	public String OwnerName;
 	public String nKitchens;
