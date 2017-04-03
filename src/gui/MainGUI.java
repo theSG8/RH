@@ -166,6 +166,7 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton() {
 		if (rdbtnNewRadioButton == null) {
 			rdbtnNewRadioButton = new JRadioButton("English");
+			rdbtnNewRadioButton.setSelected(true);
 			rdbtnNewRadioButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -217,7 +218,6 @@ public class MainGUI extends JFrame {
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
-			getRdbtnNewRadioButton_2().setSelected(true);
 		}
 		return panel;
 	}

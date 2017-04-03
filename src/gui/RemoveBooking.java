@@ -16,7 +16,7 @@ import businessLogic.ApplicationFacadeInterfaceWS;
 import businessLogic.FacadeImplementationWS;
 import domain.Offer;
 
-public class ShowBookedOffers extends JFrame {
+public class RemoveBooking extends JFrame {
 
 	private JList<Offer> list;
 	private JPanel contentPane;
@@ -31,7 +31,7 @@ public class ShowBookedOffers extends JFrame {
 			@Override
 			public void run() {
 				try {
-					ShowBookedOffers frame = new ShowBookedOffers(new FacadeImplementationWS(), null);
+					RemoveBooking frame = new RemoveBooking(new FacadeImplementationWS(), null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class ShowBookedOffers extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ShowBookedOffers(ApplicationFacadeInterfaceWS bl, Vector<Offer> of) {
+	public RemoveBooking(ApplicationFacadeInterfaceWS bl, Vector<Offer> of) {
 		setBusinessLogic(bl);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

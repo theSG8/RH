@@ -27,6 +27,7 @@ public class CliOptions extends JFrame {
 
 		setBusinessLogic(bl);
 		currentClient = current;
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 433, 334);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,7 +82,7 @@ public class CliOptions extends JFrame {
 				if (of.size() == 0) {
 					showDialog("No tienes ninguna reserva");
 				} else {
-					ShowBookedOffers sro = new ShowBookedOffers(bl, of);
+					RemoveBooking sro = new RemoveBooking(bl, of);
 					sro.setVisible(true);
 				}
 			}

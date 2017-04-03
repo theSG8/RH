@@ -116,7 +116,7 @@ public class BookOfferGui extends JFrame {
 		contentPane.add(lblOBienBusque);
 
 		lblImg = new JLabel("");
-		lblImg.setBounds(490, 30, 210, 180);
+		lblImg.setBounds(603, 22, 299, 230);
 		contentPane.add(lblImg);
 
 		lbldes = new JLabel("%dir%");
@@ -191,7 +191,7 @@ public class BookOfferGui extends JFrame {
 
 			}
 		});
-		btnReservar.setBounds(642, 278, 215, 47);
+		btnReservar.setBounds(650, 277, 215, 47);
 		contentPane.add(btnReservar);
 
 		lblNewLabel = new JLabel("N\u00BA Cocinas");
