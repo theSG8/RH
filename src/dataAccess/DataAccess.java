@@ -340,4 +340,14 @@ public class DataAccess {
 		return res;
 	}
 
+	public void reserveOffer(String username, int offerNumber) {
+		db.getTransaction().begin();
+		Client client =db.find(Client.class, username);
+		Offer of =db.find(Offer.class, offerNumber);
+		client.addOffer(of);
+		of.reserveOffer();
+		db.getTransaction().commit();
+		
+	}
+
 }

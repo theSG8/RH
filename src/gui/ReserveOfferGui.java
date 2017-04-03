@@ -153,6 +153,8 @@ public class ReserveOfferGui extends JFrame {
 					tableModel.setRowCount(0);
 					
 					for (Offer of : offers) {
+						
+						if(!of.isReserved()){
 						Vector<Object> row = new Vector<Object>();
 
 						row.add(of.getOfferNumber());
@@ -161,7 +163,7 @@ public class ReserveOfferGui extends JFrame {
 						row.add(of.getPrice());
 						tableModel.addRow(row);
 					}
-					
+					}
 					showDialog("Mostrando ofertas encontradas");
 				}
 
@@ -171,6 +173,21 @@ public class ReserveOfferGui extends JFrame {
 		contentPane.add(btnBuscar);
 
 		JButton btnReservar = new JButton("RESERVAR");
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Integer s = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+			
+				businessLogic.reserveOffer(CliOptions.currentClient,s);
+				
+				showDialog("Oferta reservada correctamente");
+				
+				tableModel.setRowCount(0);
+				
+				
+				
+			}
+		});
 		btnReservar.setBounds(642, 278, 215, 47);
 		contentPane.add(btnReservar);
 
@@ -198,6 +215,7 @@ public class ReserveOfferGui extends JFrame {
 			tableModel.addRow(row);
 		}
 		for (Offer of : offers) {
+			if(!of.isReserved()){
 			Vector<Object> row = new Vector<Object>();
 
 			row.add(of.getOfferNumber());
@@ -205,6 +223,7 @@ public class ReserveOfferGui extends JFrame {
 			row.add(of.getLastDay());
 			row.add(of.getPrice());
 			tableModel.addRow(row);
+			}
 		}
 
 	}

@@ -98,4 +98,6 @@ public interface ApplicationFacadeInterfaceWS {
 	public ImageIcon getHouseImage(RuralHouse currentHouse);
 	
 	public Vector<Offer> getHouseOffers(RuralHouse rh);
+
+	void reserveOffer(Client currentClient, int offerNumber);
 }

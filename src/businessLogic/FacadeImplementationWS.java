@@ -280,6 +280,14 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		dbManager.close();
 		return offers;
 	}
+
+	@Override
+	public void reserveOffer(Client currentClient, int offerNumber) {
+		DataAccess dbManager = new DataAccess();
+		dbManager.reserveOffer(currentClient.getUsername(),offerNumber);
+		dbManager.close();	
+		
+	}
 	
 
 

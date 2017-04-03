@@ -124,4 +124,18 @@ public class Offer implements Serializable {
 	public String toString(){
 		return offerNumber+";"+firstDay.toString()+";"+lastDay.toString()+";"+price;
 	}
+	
+	public void reserveOffer(){
+		
+		reserved=true;
+	}
+	
+	public void cancelOffer(){
+		
+		reserved=false;
+	}
+	
+	public boolean isReserved() {
+		return reserved;
+	}
 }

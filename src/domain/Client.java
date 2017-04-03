@@ -51,4 +51,8 @@ public class Client {
 	public Vector<Offer> getReservedOffers() {
 		return reservedOffers;
 	}
+	
+	public void addOffer(Offer of ){
+		reservedOffers.addElement(of);
+	}
 }
