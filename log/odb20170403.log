@@ -327,3 +327,37 @@ Type domain.Owner is not enhanced.
 [2017-04-03 18:16:49 #5 type] 
 Type domain.Client is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:18:38 #1 store] 
+Database 'C:\Users\xabie\git\RepositoryRH\resources\ruralHouses.odb' is opened by 10704@MSI
+
+[2017-04-03 18:18:38 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:18:38 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:18:38 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:18:38 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:21:36 #1 store] 
+Database 'C:\Users\xabie\git\RepositoryRH\resources\ruralHouses.odb' is opened by 11664@MSI
+
+[2017-04-03 18:21:36 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:21:36 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:21:36 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:21:36 #5 type] 
+Type domain.Client is not enhanced.
+
