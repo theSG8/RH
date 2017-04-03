@@ -34,6 +34,7 @@ public class MainGUI extends JFrame {
 	private JButton boton1 = null;
 	private JButton boton2 = null;
 	private JButton boton3 = null;
+	private static ApplicationFacadeInterfaceWS businessLogic;
 
     private static ApplicationFacadeInterfaceWS appFacadeInterface;
 	
@@ -117,13 +118,11 @@ public class MainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (boton2 == null) {
 			boton2 = new JButton();
-			boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
+			boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 			boton2.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					ApplicationFacadeInterfaceWS facade=MainGUI.getBusinessLogic();
-					Vector<RuralHouse> rhs=facade.getAllRuralHouses();
-					JFrame a = new SetAvailabilityGUI(rhs);
-					a.setVisible(true);
+					RegisterGUI rg = new RegisterGUI(getBusinessLogic());
+					rg.setVisible(true);
 				}
 			});
 		}
@@ -138,12 +137,13 @@ public class MainGUI extends JFrame {
 	private JButton getBoton3() {
 		if (boton3 == null) {
 			boton3 = new JButton();
-			boton3.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
+			boton3.setText(ResourceBundle.getBundle("Etiquetas").getString("Login"));
 			boton3.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new QueryAvailabilityGUI();
+					LoginGUI log = new LoginGUI(getBusinessLogic());
+					log.setVisible(true);
 
-					a.setVisible(true);
+					log.setVisible(true);
 				}
 			});
 		}
@@ -212,8 +212,8 @@ public class MainGUI extends JFrame {
 	
 	private void redibujar() {
 		lblNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-		boton3.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryAvailability"));
-		boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("SetAvailability"));
+		boton3.setText(ResourceBundle.getBundle("Etiquetas").getString("Login"));
+		boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
