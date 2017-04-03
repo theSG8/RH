@@ -85,7 +85,7 @@ public class CliOptions extends JFrame {
 				} else {
 					ShowReservedOffers sro = new ShowReservedOffers(bl, of);
 					sro.setVisible(true);
-
+					closeCliOp();
 				}
 			}
 		});

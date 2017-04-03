@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -47,9 +48,13 @@ public class ShowReservedOffers extends JFrame {
 		contentPane.setLayout(null);
 
 		JList list = new JList();
-		list.setBounds(10, 73, 414, 139);
+		list.setBounds(10, 23, 414, 139);
 		contentPane.add(list);
 		list.setModel(listModel);
+
+		JButton btnEliminarReserva = new JButton("Eliminar reserva");
+		btnEliminarReserva.setBounds(120, 201, 194, 38);
+		contentPane.add(btnEliminarReserva);
 
 		for (Offer o : of) {
 			listModel.addElement(o);
