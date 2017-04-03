@@ -1,7 +1,11 @@
 package domain;
 
+import java.util.Vector;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Client {
@@ -9,11 +13,14 @@ public class Client {
 	@Id
 	String username;
 	String password;
+	@OneToMany(fetch=FetchType.EAGER)
+	Vector<Offer>reservedOffers;
 
 	public Client(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
+		reservedOffers = new Vector<Offer>();
 	}
 
 	public String getUsername() {

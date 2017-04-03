@@ -25,6 +25,7 @@ public class Offer implements Serializable {
 	private float price;   // This is coherent because objects of java.sql.Date are objects of java.util.Date 
 	@XmlIDREF
 	private RuralHouse ruralHouse;
+	private boolean reserved;
 
 	public Offer(){}
 	public Offer(Date firstDay, Date lastDay, float price, RuralHouse ruralHouse){
@@ -32,6 +33,7 @@ public class Offer implements Serializable {
 		  this.lastDay=lastDay;
 		  this.price=price;
 		  this.ruralHouse=ruralHouse;
+		  this.reserved=false;
 	}
 	/**
 	 * Get the house number of the offer
