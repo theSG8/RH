@@ -139,6 +139,7 @@ Type domain.Client is not enhanced.
 
 ------------------------------------------------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 [2017-04-03 17:37:56 #1 store] 
 Database 'C:\Users\xabie\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 58-58)
 
@@ -359,5 +360,250 @@ Type domain.Offer is not enhanced.
 Type domain.Owner is not enhanced.
 
 [2017-04-03 18:21:36 #5 type] 
+=======
+[2017-04-03 17:30:01 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 58-58)
+
+[2017-04-03 17:30:01 #2 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 7184@WINDOWS-7PN3ORU
+
+[2017-04-03 17:30:01 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 17:30:01 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 17:30:01 #5 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 17:30:01 #6 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 17:34:28 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 59-59)
+
+[2017-04-03 17:34:28 #2 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 15008@WINDOWS-7PN3ORU
+
+[2017-04-03 17:34:28 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 17:34:28 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 17:34:28 #5 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 17:34:28 #6 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 17:35:49 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 5600@WINDOWS-7PN3ORU
+
+[2017-04-03 17:35:49 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 17:35:49 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 17:35:49 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 17:35:49 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 17:49:05 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 4036@WINDOWS-7PN3ORU
+
+[2017-04-03 17:49:05 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 17:49:05 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 17:49:05 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 17:49:05 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 17:54:27 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 60-60)
+
+[2017-04-03 17:54:27 #2 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 13956@WINDOWS-7PN3ORU
+
+[2017-04-03 17:54:27 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 17:54:27 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 17:54:27 #5 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 17:54:27 #6 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 17:56:21 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 11676@WINDOWS-7PN3ORU
+
+[2017-04-03 17:56:21 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 17:56:21 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 17:56:21 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 17:56:21 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:04:04 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 5928@WINDOWS-7PN3ORU
+
+[2017-04-03 18:04:04 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:04:04 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:04:04 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:04:04 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:08:24 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 6312@WINDOWS-7PN3ORU
+
+[2017-04-03 18:08:24 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:08:24 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:08:24 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:08:24 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:08:31 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 12168@WINDOWS-7PN3ORU
+
+[2017-04-03 18:08:31 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:08:31 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:08:31 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:08:31 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:08:36 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 8320@WINDOWS-7PN3ORU
+
+[2017-04-03 18:08:36 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:08:36 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:08:36 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:08:36 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:09:17 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 6056@WINDOWS-7PN3ORU
+
+[2017-04-03 18:09:17 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:09:17 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:09:17 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:09:17 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:14:32 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 2188@WINDOWS-7PN3ORU
+
+[2017-04-03 18:14:32 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:14:32 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:14:32 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:14:32 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:15:33 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 11612@WINDOWS-7PN3ORU
+
+[2017-04-03 18:15:33 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:15:33 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:15:33 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:15:33 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 18:16:07 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 6472@WINDOWS-7PN3ORU
+
+[2017-04-03 18:16:07 #2 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 18:16:07 #3 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 18:16:07 #4 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 18:16:07 #5 type] 
+>>>>>>> branch 'master' of https://xp-dev.com/git/RepositoryRH
 Type domain.Client is not enhanced.
 
