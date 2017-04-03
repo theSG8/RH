@@ -41,6 +41,16 @@ public class BookOfferGui extends JFrame {
 	private ApplicationFacadeInterfaceWS businessLogic;
 	private JTextField text_noches;
 	private JCalendar calendar;
+	private JLabel lblNewLabel;
+	private JLabel lblNBaos;
+	private JLabel lblNcoc;
+	private JLabel lnlNbañ;
+	private JLabel lblNDor;
+	private JLabel lblNDormitorios;
+	private JLabel lblNGar;
+	private JLabel lblNGarajes;
+	private JLabel lblNComedores;
+	private JLabel lblNComed;
 
 	/**
 	 * Launch the application.
@@ -183,6 +193,46 @@ public class BookOfferGui extends JFrame {
 		});
 		btnReservar.setBounds(642, 278, 215, 47);
 		contentPane.add(btnReservar);
+		
+		lblNewLabel = new JLabel("N\u00BA Cocinas");
+		lblNewLabel.setBounds(38, 124, 74, 14);
+		contentPane.add(lblNewLabel);
+		
+		lblNBaos = new JLabel("N\u00BA Ba\u00F1os");
+		lblNBaos.setBounds(38, 151, 74, 14);
+		contentPane.add(lblNBaos);
+		
+		lblNcoc = new JLabel((String) null);
+		lblNcoc.setBounds(134, 124, 122, 14);
+		contentPane.add(lblNcoc);
+		
+		lnlNbañ = new JLabel((String) null);
+		lnlNbañ.setBounds(134, 151, 122, 14);
+		contentPane.add(lnlNbañ);
+		
+		lblNDor = new JLabel((String) null);
+		lblNDor.setBounds(378, 100, 122, 14);
+		contentPane.add(lblNDor);
+		
+		lblNDormitorios = new JLabel("N\u00BA Dormitorios");
+		lblNDormitorios.setBounds(282, 100, 74, 14);
+		contentPane.add(lblNDormitorios);
+		
+		lblNGar = new JLabel((String) null);
+		lblNGar.setBounds(378, 124, 122, 14);
+		contentPane.add(lblNGar);
+		
+		lblNGarajes = new JLabel("N\u00BA Garajes");
+		lblNGarajes.setBounds(282, 124, 74, 14);
+		contentPane.add(lblNGarajes);
+		
+		lblNComedores = new JLabel("N\u00BA Comedores");
+		lblNComedores.setBounds(282, 151, 74, 14);
+		contentPane.add(lblNComedores);
+		
+		lblNComed = new JLabel((String) null);
+		lblNComed.setBounds(378, 151, 122, 14);
+		contentPane.add(lblNComed);
 
 		SetLabelValues();
 		SetOffers();
@@ -228,6 +278,11 @@ public class BookOfferGui extends JFrame {
 
 		lblHouseName.setText(currentHouse.getHouseNumber() + " : " + currentHouse.getCity());
 		lbldes.setText(currentHouse.getDescription());
+		lblNcoc.setText(currentHouse.getnKitchens());
+		lnlNbañ.setText(currentHouse.getnBathrooms());
+		lblNDor.setText(currentHouse.getnBedrooms());
+		lblNGar.setText(currentHouse.getnParking());
+		lblNComed.setText(currentHouse.getnDrooms());
 		ImageIcon image = businessLogic.getHouseImage(currentHouse);
 		if (image == null) {
 			showDialog("Error al encontrar la imagen");
