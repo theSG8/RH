@@ -710,3 +710,40 @@ Type domain.Offer is not enhanced.
 [2017-04-03 19:32:02 #6 type] 
 Type domain.Client is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 19:42:38 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 12-13)
+
+[2017-04-03 19:42:38 #2 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 14928@WINDOWS-7PN3ORU
+
+[2017-04-03 19:42:38 #3 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 19:42:38 #4 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 19:42:38 #5 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 19:42:38 #6 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-03 19:44:28 #1 store] 
+Database 'X:\Users\Alex\git\RepositoryRH\resources\ruralHouses.odb' is opened by 8424@WINDOWS-7PN3ORU
+
+[2017-04-03 19:44:28 #2 type] 
+Type domain.Owner is not enhanced.
+
+[2017-04-03 19:44:28 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-04-03 19:44:28 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-04-03 19:44:28 #5 type] 
+Type domain.Client is not enhanced.
+

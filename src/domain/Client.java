@@ -13,8 +13,8 @@ public class Client {
 	@Id
 	String username;
 	String password;
-	@OneToMany(fetch=FetchType.EAGER)
-	Vector<Offer>reservedOffers;
+	@OneToMany(fetch = FetchType.EAGER)
+	Vector<Offer> reservedOffers;
 
 	public Client(String username, String password) {
 		super();
@@ -46,5 +46,9 @@ public class Client {
 		} else {
 			return false;
 		}
+	}
+
+	public Vector<Offer> getReservedOffers() {
+		return reservedOffers;
 	}
 }

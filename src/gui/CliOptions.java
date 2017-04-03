@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import domain.Client;
+import domain.Offer;
 import domain.RuralHouse;
 
 public class CliOptions extends JFrame {
@@ -40,7 +41,7 @@ public class CliOptions extends JFrame {
 				LoginGUI lg = new LoginGUI(bl);
 				currentClient = null;
 				lg.setVisible(true);
-				closeCliOp(false);
+				closeCliOp();
 			}
 		});
 		btnLogout.setBounds(318, 261, 89, 23);
@@ -59,11 +60,12 @@ public class CliOptions extends JFrame {
 				} else {
 					AllHouses ah = new AllHouses(businessLogic, houses);
 					ah.setVisible(true);
+					closeCliOp();
 				}
 
 			}
 		});
-		btnBuscarOferta.setBounds(108, 51, 158, 23);
+		btnBuscarOferta.setBounds(112, 49, 183, 33);
 		contentPane.add(btnBuscarOferta);
 
 		JLabel lblEstsLogeadoComo = new JLabel(
@@ -71,6 +73,24 @@ public class CliOptions extends JFrame {
 		lblEstsLogeadoComo.setBounds(10, 265, 174, 14);
 		contentPane.add(lblEstsLogeadoComo);
 		lblEstsLogeadoComo.setText("Estás logeado como: " + currentClient.getUsername());
+
+		JButton btnMostrarReservas = new JButton(
+				ResourceBundle.getBundle("Etiquetas").getString("CliOptions.btnMostrarReservas.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnMostrarReservas.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Vector<Offer> of = currentClient.getReservedOffers();
+				if (of.size() == 0) {
+					showDialog("No tienes ninguna reserva");
+				} else {
+					ShowReservedOffers sro = new ShowReservedOffers(bl, of);
+					sro.setVisible(true);
+
+				}
+			}
+		});
+		btnMostrarReservas.setBounds(112, 93, 183, 33);
+		contentPane.add(btnMostrarReservas);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
@@ -78,8 +98,8 @@ public class CliOptions extends JFrame {
 
 	}
 
-	private void closeCliOp(boolean cl) {
-		this.setVisible(cl);
+	private void closeCliOp() {
+		this.setVisible(false);
 
 	}
 
@@ -87,5 +107,4 @@ public class CliOptions extends JFrame {
 		JOptionPane.showMessageDialog(this, msg);
 
 	}
-
 }
