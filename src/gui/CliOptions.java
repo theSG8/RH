@@ -27,7 +27,6 @@ public class CliOptions extends JFrame {
 
 		setBusinessLogic(bl);
 		currentClient = current;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 433, 334);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,7 +59,6 @@ public class CliOptions extends JFrame {
 				} else {
 					AllHouses ah = new AllHouses(businessLogic, houses);
 					ah.setVisible(true);
-					closeCliOp();
 				}
 
 			}
@@ -79,13 +77,12 @@ public class CliOptions extends JFrame {
 		btnMostrarReservas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Vector<Offer> of = currentClient.getReservedOffers();
+				Vector<Offer> of = businessLogic.getClientBookings(currentClient);
 				if (of.size() == 0) {
 					showDialog("No tienes ninguna reserva");
 				} else {
-					ShowReservedOffers sro = new ShowReservedOffers(bl, of);
+					ShowBookedOffers sro = new ShowBookedOffers(bl, of);
 					sro.setVisible(true);
-					closeCliOp();
 				}
 			}
 		});

@@ -9,18 +9,17 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Client {
-
 	@Id
 	String username;
 	String password;
 	@OneToMany(fetch = FetchType.EAGER)
-	Vector<Offer> reservedOffers;
+	Vector<Offer> bookedOffers;
 
 	public Client(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		reservedOffers = new Vector<Offer>();
+		bookedOffers = new Vector<Offer>();
 	}
 
 	public String getUsername() {
@@ -48,11 +47,16 @@ public class Client {
 		}
 	}
 
-	public Vector<Offer> getReservedOffers() {
-		return reservedOffers;
+	public Vector<Offer> getBookedOffers() {
+		return bookedOffers;
 	}
-	
-	public void addOffer(Offer of ){
-		reservedOffers.addElement(of);
+
+	public void addOffer(Offer of) {
+		bookedOffers.addElement(of);
+	}
+
+	public void removeBooking(Offer o) {
+		bookedOffers.remove(o);
+
 	}
 }

@@ -1,46 +1,39 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JLabel;
 
-import java.awt.Font;
-
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
+import com.toedter.calendar.JCalendar;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import domain.Offer;
 import domain.RuralHouse;
 
-import java.awt.Rectangle;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Vector;
-
-import com.toedter.calendar.JCalendar;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class ReserveOfferGui extends JFrame {
+public class BookOfferGui extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel tableModel;
-	private String[] columnNames = new String[] { "Oferta", "PrimerDia",
-			"UltimoDia", "Precio" };
+	private String[] columnNames = new String[] { "Oferta", "PrimerDia", "UltimoDia", "Precio" };
 	private RuralHouse currentHouse;
 	private JLabel lbldes;
 	private JLabel lblHouseName;
@@ -54,10 +47,10 @@ public class ReserveOfferGui extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
-					ReserveOfferGui frame = new ReserveOfferGui(null,
-							new RuralHouse());
+					BookOfferGui frame = new BookOfferGui(null, new RuralHouse());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,11 +62,10 @@ public class ReserveOfferGui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReserveOfferGui(ApplicationFacadeInterfaceWS bl, RuralHouse rh) {
+	public BookOfferGui(ApplicationFacadeInterfaceWS bl, RuralHouse rh) {
 		setBusinessLogic(bl);
 		currentHouse = rh;
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 959, 616);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -140,29 +132,30 @@ public class ReserveOfferGui extends JFrame {
 
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
 				Vector<Offer> offers = searchByCurrentDate();
-				
+
 				if (offers.isEmpty()) {
 					showDialog("No hay ofertas disponibles para estas fechas. Se mostraran todas");
 					tableModel.setRowCount(0);
 					SetOffers();
 				} else {
-					
-					tableModel.setRowCount(0);
-					
-					for (Offer of : offers) {
-						
-						if(!of.isReserved()){
-						Vector<Object> row = new Vector<Object>();
 
-						row.add(of.getOfferNumber());
-						row.add(of.getFirstDay());
-						row.add(of.getLastDay());
-						row.add(of.getPrice());
-						tableModel.addRow(row);
-					}
+					tableModel.setRowCount(0);
+
+					for (Offer of : offers) {
+
+						if (!of.isBooked()) {
+							Vector<Object> row = new Vector<Object>();
+
+							row.add(of.getOfferNumber());
+							row.add(of.getFirstDay());
+							row.add(of.getLastDay());
+							row.add(of.getPrice());
+							tableModel.addRow(row);
+						}
 					}
 					showDialog("Mostrando ofertas encontradas");
 				}
@@ -174,18 +167,18 @@ public class ReserveOfferGui extends JFrame {
 
 		JButton btnReservar = new JButton("RESERVAR");
 		btnReservar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				Integer s = (Integer) table.getValueAt(table.getSelectedRow(), 0);
-			
-				businessLogic.reserveOffer(CliOptions.currentClient,s);
-				
+
+				Integer value = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+
+				businessLogic.bookOffer(CliOptions.currentClient, value);
+
 				showDialog("Oferta reservada correctamente");
-				
+
 				tableModel.setRowCount(0);
-				
-				
-				
+				SetOffers();
+
 			}
 		});
 		btnReservar.setBounds(642, 278, 215, 47);
@@ -197,8 +190,7 @@ public class ReserveOfferGui extends JFrame {
 	}
 
 	protected Vector<Offer> searchByCurrentDate() {
-		Date firstDay = ReserveOfferGui.this.getCalendar().getCalendar()
-				.getTime();
+		Date firstDay = BookOfferGui.this.getCalendar().getCalendar().getTime();
 		firstDay = trim(firstDay);
 		Calendar calendar = Calendar.getInstance();
 		int numDias = Integer.parseInt(text_noches.getText());
@@ -215,14 +207,14 @@ public class ReserveOfferGui extends JFrame {
 			tableModel.addRow(row);
 		}
 		for (Offer of : offers) {
-			if(!of.isReserved()){
-			Vector<Object> row = new Vector<Object>();
+			if (!of.isBooked()) {
+				Vector<Object> row = new Vector<Object>();
 
-			row.add(of.getOfferNumber());
-			row.add(of.getFirstDay());
-			row.add(of.getLastDay());
-			row.add(of.getPrice());
-			tableModel.addRow(row);
+				row.add(of.getOfferNumber());
+				row.add(of.getFirstDay());
+				row.add(of.getLastDay());
+				row.add(of.getPrice());
+				tableModel.addRow(row);
 			}
 		}
 
@@ -234,15 +226,14 @@ public class ReserveOfferGui extends JFrame {
 
 	private void SetLabelValues() {
 
-		lblHouseName.setText(currentHouse.getHouseNumber() + " : "
-				+ currentHouse.getCity());
+		lblHouseName.setText(currentHouse.getHouseNumber() + " : " + currentHouse.getCity());
 		lbldes.setText(currentHouse.getDescription());
 		ImageIcon image = businessLogic.getHouseImage(currentHouse);
 		if (image == null) {
 			showDialog("Error al encontrar la imagen");
 		} else {
-			image.setImage(image.getImage().getScaledInstance(
-					lblImg.getWidth(), lblImg.getHeight(), Image.SCALE_SMOOTH));
+			image.setImage(
+					image.getImage().getScaledInstance(lblImg.getWidth(), lblImg.getHeight(), Image.SCALE_SMOOTH));
 			lblImg.setIcon(image);
 		}
 

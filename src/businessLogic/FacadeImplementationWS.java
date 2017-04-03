@@ -175,12 +175,14 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms, String nBathRooms, String nDrooms, String nParking) {
-		RuralHouse rh = new RuralHouse(des, city, current.getUsername(), nKitchens, nBedRooms, nBathRooms, nDrooms, nParking);
+	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms,
+			String nBathRooms, String nDrooms, String nParking) {
+		RuralHouse rh = new RuralHouse(des, city, current.getUsername(), nKitchens, nBedRooms, nBathRooms, nDrooms,
+				nParking);
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeHouse(rh, current);
-		dbManager.close(); 
-		
+		dbManager.close();
+
 		return rh;
 	}
 
@@ -266,10 +268,8 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	@Override
 	public ImageIcon getHouseImage(RuralHouse currentHouse) {
-		
-		
-		
-		return new ImageIcon("img/"+currentHouse.getHouseNumber() +".png");
+
+		return new ImageIcon("img/" + currentHouse.getHouseNumber() + ".png");
 	}
 
 	@Override
@@ -282,13 +282,28 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public void reserveOffer(Client currentClient, int offerNumber) {
+	public void bookOffer(Client currentClient, int offerNumber) {
 		DataAccess dbManager = new DataAccess();
-		dbManager.reserveOffer(currentClient.getUsername(),offerNumber);
-		dbManager.close();	
-		
-	}
-	
+		dbManager.bookOffer(currentClient.getUsername(), offerNumber);
+		dbManager.close();
 
+	}
+
+	@Override
+	public void cancelBooking(Client currentClient, Offer of) {
+		DataAccess dbManager = new DataAccess();
+		dbManager.cancelOffer(currentClient.getUsername(), of.getOfferNumber());
+		dbManager.close();
+	}
+
+	@Override
+	public Vector<Offer> getClientBookings(Client client) {
+
+		Vector<Offer> res = new Vector<Offer>();
+		DataAccess dbManager = new DataAccess();
+		res = dbManager.getClientOffers(client.getUsername());
+		dbManager.close();
+		return res;
+	}
 
 }

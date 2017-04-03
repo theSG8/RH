@@ -1,6 +1,6 @@
 package domain;
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,31 +10,35 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlIDREF;
 
-
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Offer implements Serializable {
-	
 
 	@Id
 	@GeneratedValue
 	private Integer offerNumber;
-	private Date firstDay; // Dates are stored as java.util.Date objects instead of java.sql.Date objects
-	private Date lastDay;  // because, they are not well stored in db4o as java.util.Date objects
-	private float price;   // This is coherent because objects of java.sql.Date are objects of java.util.Date 
+	private Date firstDay; // Dates are stored as java.util.Date objects instead
+							// of java.sql.Date objects
+	private Date lastDay; // because, they are not well stored in db4o as
+							// java.util.Date objects
+	private float price; // This is coherent because objects of java.sql.Date
+							// are objects of java.util.Date
 	@XmlIDREF
 	private RuralHouse ruralHouse;
-	private boolean reserved;
+	private boolean booked;
 
-	public Offer(){}
-	public Offer(Date firstDay, Date lastDay, float price, RuralHouse ruralHouse){
-		  this.firstDay=firstDay;
-		  this.lastDay=lastDay;
-		  this.price=price;
-		  this.ruralHouse=ruralHouse;
-		  this.reserved=false;
+	public Offer() {
 	}
+
+	public Offer(Date firstDay, Date lastDay, float price, RuralHouse ruralHouse) {
+		this.firstDay = firstDay;
+		this.lastDay = lastDay;
+		this.price = price;
+		this.ruralHouse = ruralHouse;
+		this.booked = false;
+	}
+
 	/**
 	 * Get the house number of the offer
 	 * 
@@ -47,12 +51,12 @@ public class Offer implements Serializable {
 	/**
 	 * Set the house number to a offer
 	 * 
-	 * @param house number
+	 * @param house
+	 *            number
 	 */
 	public void setRuralHouse(RuralHouse ruralHouse) {
 		this.ruralHouse = ruralHouse;
 	}
-
 
 	/**
 	 * Get the offer number
@@ -62,8 +66,6 @@ public class Offer implements Serializable {
 	public int getOfferNumber() {
 		return this.offerNumber;
 	}
-
-	
 
 	/**
 	 * Get the first day of the offer
@@ -120,22 +122,23 @@ public class Offer implements Serializable {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	
-	public String toString(){
-		return offerNumber+";"+firstDay.toString()+";"+lastDay.toString()+";"+price;
+
+	@Override
+	public String toString() {
+		return offerNumber + ";" + firstDay.toString() + ";" + lastDay.toString() + ";" + price;
 	}
-	
-	public void reserveOffer(){
-		
-		reserved=true;
+
+	public void bookOffer() {
+
+		booked = true;
 	}
-	
-	public void cancelOffer(){
-		
-		reserved=false;
+
+	public void cancelOffer() {
+
+		booked = false;
 	}
-	
-	public boolean isReserved() {
-		return reserved;
+
+	public boolean isBooked() {
+		return booked;
 	}
 }

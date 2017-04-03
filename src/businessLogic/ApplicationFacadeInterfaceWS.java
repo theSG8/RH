@@ -5,7 +5,6 @@ import java.util.Vector;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-
 import javax.swing.ImageIcon;
 
 //import domain.Booking;
@@ -75,7 +74,8 @@ public interface ApplicationFacadeInterfaceWS {
 
 	public Owner makeOwnerLogin(String user, String pass) throws WrongPassword, UserNotExist;
 
-	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms, String nBathRooms, String nDrooms, String nParking);
+	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms,
+			String nBathRooms, String nDrooms, String nParking);
 
 	public void checkAddOwner(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists;
 
@@ -96,8 +96,12 @@ public interface ApplicationFacadeInterfaceWS {
 	public Client makeClientLogin(String user, String pass) throws WrongPassword, UserNotExist;
 
 	public ImageIcon getHouseImage(RuralHouse currentHouse);
-	
+
 	public Vector<Offer> getHouseOffers(RuralHouse rh);
 
-	void reserveOffer(Client currentClient, int offerNumber);
+	void bookOffer(Client currentClient, int offerNumber);
+
+	void cancelBooking(Client currentClient, Offer of);
+
+	Vector<Offer> getClientBookings(Client currentClient);
 }

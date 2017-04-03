@@ -119,6 +119,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					RegisterGUI rg = new RegisterGUI(getBusinessLogic());
 					rg.setVisible(true);
+					close();
 				}
 			});
 		}
@@ -139,12 +140,17 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					LoginGUI log = new LoginGUI(getBusinessLogic());
 					log.setVisible(true);
-
+					close();
 					log.setVisible(true);
 				}
 			});
 		}
 		return boton3;
+	}
+
+	protected void close() {
+		this.setVisible(false);
+
 	}
 
 	private JLabel getLblNewLabel() {

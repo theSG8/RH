@@ -68,15 +68,16 @@ public class DataAccess {
 				db.remove(rh);
 			}
 
-			/*RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio", "none");
-			RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna", "none");
-			RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo", "none");
-			RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria", "none");
-
-			db.persist(rh1);
-			db.persist(rh2);
-			db.persist(rh3);
-			db.persist(rh4);*/
+			/*
+			 * RuralHouse rh1 = new RuralHouse("Ezkioko etxea", "Ezkio",
+			 * "none"); RuralHouse rh2 = new RuralHouse("Etxetxikia", "Iruna",
+			 * "none"); RuralHouse rh3 = new RuralHouse("Udaletxea", "Bilbo",
+			 * "none"); RuralHouse rh4 = new RuralHouse("Gaztetxea", "Renteria",
+			 * "none");
+			 * 
+			 * db.persist(rh1); db.persist(rh2); db.persist(rh3);
+			 * db.persist(rh4);
+			 */
 
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
@@ -336,18 +337,32 @@ public class DataAccess {
 	public Vector<Offer> getHouseOffers(RuralHouse rh) {
 		Vector<Offer> res = new Vector<>();
 		RuralHouse rhn = db.find(RuralHouse.class, rh.getHouseNumber());
-		res =rhn.getAllOffers();
+		res = rhn.getAllOffers();
 		return res;
 	}
 
-	public void reserveOffer(String username, int offerNumber) {
+	public void bookOffer(String username, int offerNumber) {
 		db.getTransaction().begin();
-		Client client =db.find(Client.class, username);
-		Offer of =db.find(Offer.class, offerNumber);
+		Client client = db.find(Client.class, username);
+		Offer of = db.find(Offer.class, offerNumber);
 		client.addOffer(of);
-		of.reserveOffer();
+		of.bookOffer();
 		db.getTransaction().commit();
-		
+	}
+
+	public void cancelOffer(String username, int offerNumber) {
+		db.getTransaction().begin();
+		Client client = db.find(Client.class, username);
+		Offer of = db.find(Offer.class, offerNumber);
+		of.cancelOffer();
+		client.removeBooking(of);
+		db.getTransaction().commit();
+	}
+
+	public Vector<Offer> getClientOffers(String username) {
+		Client client = db.find(Client.class, username);
+		return client.getBookedOffers();
+
 	}
 
 }
