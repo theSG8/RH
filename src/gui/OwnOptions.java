@@ -145,6 +145,13 @@ public class OwnOptions extends JFrame {
 		});
 		btnLogout.setBounds(318, 261, 89, 23);
 		contentPane.add(btnLogout);
+
+		JLabel lblestasLogeadoComo = new JLabel(
+				ResourceBundle.getBundle("Etiquetas").getString("OwnOptions.lblestasLogeadoComo.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblestasLogeadoComo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblestasLogeadoComo.setBounds(10, 265, 207, 14);
+		contentPane.add(lblestasLogeadoComo);
+		lblestasLogeadoComo.setText("Estás logeado como: " + currentOwner.getUsername());
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
