@@ -99,7 +99,7 @@ public class AddRuralHouseGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					if (Integer.parseInt(dormTextField.getText()) >= 3 && Integer.parseInt(baTextField.getText()) >= 2
-							&& Integer.parseInt(cocTextField.getText()) >= 1) {
+							&& Integer.parseInt(cocTextField.getText()) >= 1 && cityTextField.getText() != null) {
 						RuralHouse rh = businessLogic.addHouse(descriptionTextField.getText(), cityTextField.getText(),
 								OwnOptions.currentOwner, cocTextField.getText(), dormTextField.getText(),
 								baTextField.getText(), comTextField.getText(), garTextField.getText());
