@@ -19,8 +19,11 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import businessLogic.FacadeImplementationWS;
+import domain.Admin;
 import domain.Client;
 import domain.Owner;
+import exceptions.PasswordsDoesNotMatch;
+import exceptions.UserAlreadyExists;
 import exceptions.UserNotExist;
 import exceptions.WrongPassword;
 
@@ -32,6 +35,7 @@ public class LoginGUI extends JFrame {
 	private JPasswordField passwordField;
 	private JRadioButton ownerRB;
 	private JRadioButton clientRB;
+	private JRadioButton adminRB;
 	private static ApplicationFacadeInterfaceWS businessLogic;
 
 	public static ApplicationFacadeInterfaceWS getBusinessLogic() {
@@ -57,8 +61,11 @@ public class LoginGUI extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws UserAlreadyExists 
+	 * @throws PasswordsDoesNotMatch 
 	 */
-	public LoginGUI(ApplicationFacadeInterfaceWS bl) {
+	public LoginGUI(ApplicationFacadeInterfaceWS bl)  {
+		
 		setBusinessLogic(bl);
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,6 +134,24 @@ public class LoginGUI extends JFrame {
 
 					}
 				}
+				if (adminRB.isSelected()) {
+
+					try {
+						Admin ad = businessLogic.makeAdminLogin(userField.getText(),
+								String.valueOf(passwordField.getPassword()));
+						AdOptions ao = new AdOptions(bl, ad);
+						ao.setVisible(true);
+						closeLogin();
+
+					} catch (WrongPassword e) {
+						showDialog(ResourceBundle.getBundle("Etiquetas").getString("WrongPassword"));
+
+					} catch (UserNotExist e) {
+						showDialog(ResourceBundle.getBundle("Etiquetas").getString("UserDoesNotExist"));
+
+					}
+
+				}
 
 			}
 		});
@@ -156,13 +181,18 @@ public class LoginGUI extends JFrame {
 		ownerRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("Owner"));
 		ownerRB.setSelected(true);
 		buttonGroup.add(ownerRB);
-		ownerRB.setBounds(89, 122, 127, 25);
+		ownerRB.setBounds(38, 122, 127, 25);
 		contentPane.add(ownerRB);
 
 		clientRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("Client"));
 		buttonGroup.add(clientRB);
-		clientRB.setBounds(278, 122, 127, 25);
+		clientRB.setBounds(191, 122, 127, 25);
 		contentPane.add(clientRB);
+		
+		adminRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.rdbtnAdmin.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		buttonGroup.add(adminRB);
+		adminRB.setBounds(331, 123, 109, 23);
+		contentPane.add(adminRB);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
@@ -178,5 +208,4 @@ public class LoginGUI extends JFrame {
 		this.setVisible(false);
 
 	}
-
 }

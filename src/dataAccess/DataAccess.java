@@ -13,6 +13,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
+import domain.Admin;
 import domain.Client;
 //import domain.Booking;
 import domain.Offer;
@@ -363,6 +364,46 @@ public class DataAccess {
 		Client client = db.find(Client.class, username);
 		return client.getBookedOffers();
 
+	}
+
+	public Admin getAdmin(String userName) {
+		return db.find(Admin.class, userName);
+	}
+
+	public void storeNewAdmin(Admin a) throws UserAlreadyExists {
+		if (!chkIfAdminExists(a)) {
+			throw new UserAlreadyExists();
+		} else {
+			db.getTransaction().begin();
+			db.persist(a);
+			db.getTransaction().commit();
+
+		}
+		
+	}
+
+	private boolean chkIfAdminExists(Admin a) {
+		Vector<Admin> admins = getAllAdmins();
+		for (Admin current : admins) {
+			if (current.getUserName().equals(a.getUserName())) {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	private Vector<Admin> getAllAdmins() {
+		System.out.println(">> DataAccess: getAllUsers");
+		Vector<Admin> res = new Vector<>();
+		TypedQuery<Admin> query = db.createQuery("SELECT o FROM Admin a", Admin.class);
+		List<Admin> results = query.getResultList();
+		Iterator<Admin> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+
+		return res;
 	}
 
 }

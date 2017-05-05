@@ -7,6 +7,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.swing.ImageIcon;
 
+import domain.Admin;
 //import domain.Booking;
 import domain.Client;
 import domain.Offer;
@@ -104,4 +105,8 @@ public interface ApplicationFacadeInterfaceWS {
 	void cancelBooking(Client currentClient, Offer of);
 
 	Vector<Offer> getClientBookings(Client currentClient);
+
+	Admin makeAdminLogin(String userName, String pass) throws UserNotExist, WrongPassword;
+
+	void checkAddAdmin(String user, String pass1, String pass2) throws PasswordsDoesNotMatch, UserAlreadyExists;
 }

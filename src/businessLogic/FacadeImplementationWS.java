@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
+import domain.Admin;
 import domain.Client;
 //import domain.Booking;
 import domain.Offer;
@@ -304,6 +305,40 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		res = dbManager.getClientOffers(client.getUsername());
 		dbManager.close();
 		return res;
+	}
+
+	@Override
+	public Admin makeAdminLogin(String userName, String pass) throws UserNotExist, WrongPassword {
+		DataAccess dbManager = new DataAccess();
+		Admin ad = dbManager.getAdmin(userName);
+		
+		if (ad == null) {
+			dbManager.close();
+			throw new UserNotExist();
+		} else {
+			if (ad.checkPassword(pass)) {
+				dbManager.close();
+				return ad;
+			} else {
+				dbManager.close();
+				throw new WrongPassword();
+			}
+		}
+	}
+
+	@Override
+	public void checkAddAdmin(String user, String pass1, String pass2) 
+		throws PasswordsDoesNotMatch, UserAlreadyExists {
+			checkDoublePassword(pass1, pass2);
+			addNewAdmin(user, pass1);
+	}
+
+	private void addNewAdmin(String user, String pass) throws UserAlreadyExists {
+		Admin a = new Admin(user, pass);
+		DataAccess dbManager = new DataAccess();
+		dbManager.storeNewAdmin(a);
+		dbManager.close();
+		
 	}
 
 }
