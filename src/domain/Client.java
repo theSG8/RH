@@ -40,7 +40,7 @@ public class Client {
 
 	public boolean checkPassword(String password) {
 
-		if (password.equals(password)) {
+		if (this.password.equals(password)) {
 			return true;
 		} else {
 			return false;

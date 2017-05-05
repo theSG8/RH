@@ -99,7 +99,7 @@ public class BookOfferGui extends JFrame {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(new Rectangle(45, 305, 320, 116));
-		scrollPane.setBounds(200, 250, 320, 116);
+		scrollPane.setBounds(38, 250, 555, 116);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
