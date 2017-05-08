@@ -11,9 +11,11 @@ import domain.Admin;
 import domain.Booking;
 //import domain.Booking;
 import domain.Client;
+import domain.ClientReport;
+import domain.HouseReport;
 import domain.Offer;
 import domain.Owner;
-import domain.Report;
+import domain.OwnerReport;
 import domain.RuralHouse;
 import exceptions.BadDates;
 import exceptions.OverlappingOfferExists;
@@ -112,7 +114,9 @@ public interface ApplicationFacadeInterfaceWS {
 
 	public void checkAddAdmin(String user, String pass1, String pass2) throws PasswordsDoesNotMatch, UserAlreadyExists;
 
-	public Vector<Report> getHouseReports();
+	public Vector<HouseReport> getHouseReports();
 
-	public Vector<Report> getClientReports();
+	public Vector<ClientReport> getClientReports();
+
+	public Vector<OwnerReport> getOwnerReports();
 }

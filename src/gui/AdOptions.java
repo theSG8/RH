@@ -16,7 +16,9 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import domain.Admin;
-import domain.Report;
+import domain.ClientReport;
+import domain.HouseReport;
+import domain.OwnerReport;
 
 public class AdOptions extends JFrame {
 
@@ -40,8 +42,9 @@ public class AdOptions extends JFrame {
 		btnReports.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Vector<Report> cliRep = businessLogic.getClientReports();
-				Vector<Report> houseRep = businessLogic.getHouseReports();
+				Vector<ClientReport> cliRep = businessLogic.getClientReports();
+				Vector<HouseReport> houseRep = businessLogic.getHouseReports();
+				Vector<OwnerReport> ownRep = businessLogic.getOwnerReports();
 			}
 		});
 		btnReports.setBounds(120, 25, 192, 39);

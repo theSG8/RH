@@ -12,10 +12,12 @@ import dataAccess.DataAccess;
 import domain.Admin;
 import domain.Booking;
 import domain.Client;
+import domain.ClientReport;
+import domain.HouseReport;
 //import domain.Booking;
 import domain.Offer;
 import domain.Owner;
-import domain.Report;
+import domain.OwnerReport;
 import domain.RuralHouse;
 import exceptions.BadDates;
 import exceptions.OverlappingOfferExists;
@@ -343,8 +345,8 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public Vector<Report> getHouseReports() {
-		Vector<Report> res = new Vector<Report>();
+	public Vector<HouseReport> getHouseReports() {
+		Vector<HouseReport> res = new Vector<HouseReport>();
 		DataAccess dbManager = new DataAccess();
 		res = dbManager.getHouseReports();
 		dbManager.close();
@@ -352,9 +354,21 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public Vector<Report> getClientReports() {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<ClientReport> getClientReports() {
+		Vector<ClientReport> res = new Vector<ClientReport>();
+		DataAccess dbManager = new DataAccess();
+		res = dbManager.getClientReports();
+		dbManager.close();
+		return res;
+	}
+
+	@Override
+	public Vector<OwnerReport> getOwnerReports() {
+		Vector<OwnerReport> res = new Vector<OwnerReport>();
+		DataAccess dbManager = new DataAccess();
+		res = dbManager.getOwnerReports();
+		dbManager.close();
+		return res;
 	}
 
 }

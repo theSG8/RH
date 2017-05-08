@@ -16,10 +16,12 @@ import configuration.ConfigXML;
 import domain.Admin;
 import domain.Booking;
 import domain.Client;
+import domain.ClientReport;
+import domain.HouseReport;
 //import domain.Booking;
 import domain.Offer;
 import domain.Owner;
-import domain.Report;
+import domain.OwnerReport;
 import domain.RuralHouse;
 import exceptions.OverlappingOfferExists;
 import exceptions.UserAlreadyExists;
@@ -425,13 +427,43 @@ public class DataAccess {
 		return res;
 	}
 
-	public Vector<Report> getHouseReports() {
+	public Vector<HouseReport> getHouseReports() {
 		System.out.println(">> DataAccess: getHouseReports");
-		Vector<Report> res = new Vector<Report>();
-		TypedQuery<Report> query = db.createQuery("SELECT a FROM Report a", Report.class);
+		Vector<HouseReport> res = new Vector<HouseReport>();
+		TypedQuery<HouseReport> query = db.createQuery("SELECT a FROM HouseReport a", HouseReport.class);
 
-		List<Report> results = query.getResultList();
-		Iterator<Report> itr = results.iterator();
+		List<HouseReport> results = query.getResultList();
+		Iterator<HouseReport> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+
+		return res;
+	}
+
+	public Vector<ClientReport> getClientReports() {
+		System.out.println(">> DataAccess: getHouseReports");
+		Vector<ClientReport> res = new Vector<ClientReport>();
+		TypedQuery<ClientReport> query = db.createQuery("SELECT a FROM ClientReport a", ClientReport.class);
+
+		List<ClientReport> results = query.getResultList();
+		Iterator<ClientReport> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+
+		return res;
+	}
+
+	public Vector<OwnerReport> getOwnerReports() {
+		System.out.println(">> DataAccess: getHouseReports");
+		Vector<OwnerReport> res = new Vector<OwnerReport>();
+		TypedQuery<OwnerReport> query = db.createQuery("SELECT a FROM OwnerReport a", OwnerReport.class);
+
+		List<OwnerReport> results = query.getResultList();
+		Iterator<OwnerReport> itr = results.iterator();
 
 		while (itr.hasNext()) {
 			res.add(itr.next());
