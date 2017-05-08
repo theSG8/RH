@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Owner {
+public class Owner extends User {
 
 	@Id
 	String username;

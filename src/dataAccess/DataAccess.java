@@ -19,6 +19,7 @@ import domain.Client;
 //import domain.Booking;
 import domain.Offer;
 import domain.Owner;
+import domain.Report;
 import domain.RuralHouse;
 import exceptions.OverlappingOfferExists;
 import exceptions.UserAlreadyExists;
@@ -347,9 +348,9 @@ public class DataAccess {
 		db.getTransaction().begin();
 		Client client = db.find(Client.class, username);
 		Offer of = db.find(Offer.class, offerNumber);
-		
-		//client.addOffer(of); Pre Booking
-		
+
+		// client.addOffer(of); Pre Booking
+
 		of.bookOffer();
 		Booking booking = new Booking(of, client);
 		db.persist(booking);
@@ -362,25 +363,25 @@ public class DataAccess {
 		Offer of = db.find(Offer.class, b.getOf().getOfferNumber());
 		of.cancelOffer();
 		client.removeBooking(of);
-		Booking bk =db.find(Booking.class, b.getBookingNumber());
+		Booking bk = db.find(Booking.class, b.getBookingNumber());
 		db.remove(bk);
 		db.getTransaction().commit();
 	}
 
 	public Vector<Booking> getClientBookings(String username) {
-		 Vector<Booking> res = new  Vector<Booking>();
-			Client client = db.find(Client.class, username);
-			TypedQuery<Booking> query = db.createQuery("SELECT b FROM Booking b", Booking.class);
-			List<Booking> results = query.getResultList();
-			Iterator<Booking> itr = results.iterator();
-			Booking b;
-			while (itr.hasNext()) {
-				b=itr.next();
-				if(b.getClient().getUsername()==client.getUsername()){
-					res.add(b);
-				}
+		Vector<Booking> res = new Vector<Booking>();
+		Client client = db.find(Client.class, username);
+		TypedQuery<Booking> query = db.createQuery("SELECT b FROM Booking b", Booking.class);
+		List<Booking> results = query.getResultList();
+		Iterator<Booking> itr = results.iterator();
+		Booking b;
+		while (itr.hasNext()) {
+			b = itr.next();
+			if (b.getClient().getUsername() == client.getUsername()) {
+				res.add(b);
 			}
-			return res;
+		}
+		return res;
 
 	}
 
@@ -397,13 +398,13 @@ public class DataAccess {
 			db.getTransaction().commit();
 
 		}
-		
+
 	}
 
 	private boolean chkIfAdminExists(Admin a) {
 		Vector<Admin> admins = getAllAdmins();
 		for (Admin current : admins) {
-			if (current.getUserName().equals(a.getUserName())) {
+			if (current.getUsername().equals(a.getUsername())) {
 				return false;
 			}
 		}
@@ -413,9 +414,24 @@ public class DataAccess {
 	private Vector<Admin> getAllAdmins() {
 		System.out.println(">> DataAccess: getAllUsers");
 		Vector<Admin> res = new Vector<>();
-		TypedQuery<Admin> query = db.createQuery("SELECT o FROM Admin a", Admin.class);
+		TypedQuery<Admin> query = db.createQuery("SELECT a FROM Admin a", Admin.class);
 		List<Admin> results = query.getResultList();
 		Iterator<Admin> itr = results.iterator();
+
+		while (itr.hasNext()) {
+			res.add(itr.next());
+		}
+
+		return res;
+	}
+
+	public Vector<Report> getHouseReports() {
+		System.out.println(">> DataAccess: getHouseReports");
+		Vector<Report> res = new Vector<Report>();
+		TypedQuery<Report> query = db.createQuery("SELECT a FROM Report a", Report.class);
+
+		List<Report> results = query.getResultList();
+		Iterator<Report> itr = results.iterator();
 
 		while (itr.hasNext()) {
 			res.add(itr.next());

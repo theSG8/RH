@@ -4,42 +4,42 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Admin {
-	
+public class Admin extends User {
+
 	@Id
-	String userName;
-	String passWord;
+	String username;
+	String password;
 
 	public Admin(String userName, String passWord) {
-		
-		this.userName = userName;
-		this.passWord = passWord;
-		
+
+		this.username = userName;
+		this.password = passWord;
+
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String passWord) {
+		this.password = passWord;
 	}
-	
+
 	public boolean checkPassword(String password) {
 
-		if (this.passWord.equals(password)) {
+		if (this.password.equals(password)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 }

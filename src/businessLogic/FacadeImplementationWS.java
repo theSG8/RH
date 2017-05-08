@@ -15,6 +15,7 @@ import domain.Client;
 //import domain.Booking;
 import domain.Offer;
 import domain.Owner;
+import domain.Report;
 import domain.RuralHouse;
 import exceptions.BadDates;
 import exceptions.OverlappingOfferExists;
@@ -312,7 +313,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	public Admin makeAdminLogin(String userName, String pass) throws UserNotExist, WrongPassword {
 		DataAccess dbManager = new DataAccess();
 		Admin ad = dbManager.getAdmin(userName);
-		
+
 		if (ad == null) {
 			dbManager.close();
 			throw new UserNotExist();
@@ -328,10 +329,9 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public void checkAddAdmin(String user, String pass1, String pass2) 
-		throws PasswordsDoesNotMatch, UserAlreadyExists {
-			checkDoublePassword(pass1, pass2);
-			addNewAdmin(user, pass1);
+	public void checkAddAdmin(String user, String pass1, String pass2) throws PasswordsDoesNotMatch, UserAlreadyExists {
+		checkDoublePassword(pass1, pass2);
+		addNewAdmin(user, pass1);
 	}
 
 	private void addNewAdmin(String user, String pass) throws UserAlreadyExists {
@@ -339,7 +339,22 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeNewAdmin(a);
 		dbManager.close();
-		
+
+	}
+
+	@Override
+	public Vector<Report> getHouseReports() {
+		Vector<Report> res = new Vector<Report>();
+		DataAccess dbManager = new DataAccess();
+		res = dbManager.getHouseReports();
+		dbManager.close();
+		return res;
+	}
+
+	@Override
+	public Vector<Report> getClientReports() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

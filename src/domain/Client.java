@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Client {
+public class Client extends User {
 	@Id
 	String username;
 	String password;

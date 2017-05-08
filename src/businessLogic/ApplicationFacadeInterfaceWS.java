@@ -13,6 +13,7 @@ import domain.Booking;
 import domain.Client;
 import domain.Offer;
 import domain.Owner;
+import domain.Report;
 import domain.RuralHouse;
 import exceptions.BadDates;
 import exceptions.OverlappingOfferExists;
@@ -110,4 +111,8 @@ public interface ApplicationFacadeInterfaceWS {
 	public Admin makeAdminLogin(String userName, String pass) throws UserNotExist, WrongPassword;
 
 	public void checkAddAdmin(String user, String pass1, String pass2) throws PasswordsDoesNotMatch, UserAlreadyExists;
+
+	public Vector<Report> getHouseReports();
+
+	public Vector<Report> getClientReports();
 }
