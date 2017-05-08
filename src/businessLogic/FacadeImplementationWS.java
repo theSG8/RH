@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Admin;
+import domain.Booking;
 import domain.Client;
 //import domain.Booking;
 import domain.Offer;
@@ -291,18 +292,18 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	@Override
-	public void cancelBooking(Client currentClient, Offer of) {
+	public void cancelBooking(Booking b) {
 		DataAccess dbManager = new DataAccess();
-		dbManager.cancelOffer(currentClient.getUsername(), of.getOfferNumber());
+		dbManager.cancelBooking(b);
 		dbManager.close();
 	}
 
 	@Override
-	public Vector<Offer> getClientBookings(Client client) {
+	public Vector<Booking> getClientBookings(Client client) {
 
-		Vector<Offer> res = new Vector<Offer>();
+		Vector<Booking> res = new Vector<Booking>();
 		DataAccess dbManager = new DataAccess();
-		res = dbManager.getClientOffers(client.getUsername());
+		res = dbManager.getClientBookings(client.getUsername());
 		dbManager.close();
 		return res;
 	}

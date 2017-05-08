@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import domain.Admin;
+import domain.Booking;
 import domain.Client;
 //import domain.Booking;
 import domain.Offer;
@@ -346,23 +347,40 @@ public class DataAccess {
 		db.getTransaction().begin();
 		Client client = db.find(Client.class, username);
 		Offer of = db.find(Offer.class, offerNumber);
-		client.addOffer(of);
+		
+		//client.addOffer(of); Pre Booking
+		
 		of.bookOffer();
+		Booking booking = new Booking(of, client);
+		db.persist(booking);
 		db.getTransaction().commit();
 	}
 
-	public void cancelOffer(String username, int offerNumber) {
+	public void cancelBooking(Booking b) {
 		db.getTransaction().begin();
-		Client client = db.find(Client.class, username);
-		Offer of = db.find(Offer.class, offerNumber);
+		Client client = db.find(Client.class, b.getClient().getUsername());
+		Offer of = db.find(Offer.class, b.getOf().getOfferNumber());
 		of.cancelOffer();
 		client.removeBooking(of);
+		Booking bk =db.find(Booking.class, b.getBookingNumber());
+		db.remove(bk);
 		db.getTransaction().commit();
 	}
 
-	public Vector<Offer> getClientOffers(String username) {
-		Client client = db.find(Client.class, username);
-		return client.getBookedOffers();
+	public Vector<Booking> getClientBookings(String username) {
+		 Vector<Booking> res = new  Vector<Booking>();
+			Client client = db.find(Client.class, username);
+			TypedQuery<Booking> query = db.createQuery("SELECT b FROM Booking b", Booking.class);
+			List<Booking> results = query.getResultList();
+			Iterator<Booking> itr = results.iterator();
+			Booking b;
+			while (itr.hasNext()) {
+				b=itr.next();
+				if(b.getClient().getUsername()==client.getUsername()){
+					res.add(b);
+				}
+			}
+			return res;
 
 	}
 

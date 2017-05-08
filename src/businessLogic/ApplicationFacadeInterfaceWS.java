@@ -8,6 +8,7 @@ import javax.jws.WebService;
 import javax.swing.ImageIcon;
 
 import domain.Admin;
+import domain.Booking;
 //import domain.Booking;
 import domain.Client;
 import domain.Offer;
@@ -100,13 +101,13 @@ public interface ApplicationFacadeInterfaceWS {
 
 	public Vector<Offer> getHouseOffers(RuralHouse rh);
 
-	void bookOffer(Client currentClient, int offerNumber);
+	public void bookOffer(Client currentClient, int offerNumber);
 
-	void cancelBooking(Client currentClient, Offer of);
+	public void cancelBooking(Booking b);
 
-	Vector<Offer> getClientBookings(Client currentClient);
+	public Vector<Booking> getClientBookings(Client currentClient);
 
-	Admin makeAdminLogin(String userName, String pass) throws UserNotExist, WrongPassword;
+	public Admin makeAdminLogin(String userName, String pass) throws UserNotExist, WrongPassword;
 
-	void checkAddAdmin(String user, String pass1, String pass2) throws PasswordsDoesNotMatch, UserAlreadyExists;
+	public void checkAddAdmin(String user, String pass1, String pass2) throws PasswordsDoesNotMatch, UserAlreadyExists;
 }

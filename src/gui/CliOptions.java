@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
+import domain.Booking;
 import domain.Client;
 import domain.Offer;
 import domain.RuralHouse;
@@ -78,7 +79,7 @@ public class CliOptions extends JFrame {
 		btnMostrarReservas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Vector<Offer> of = businessLogic.getClientBookings(currentClient);
+				Vector<Booking> of = businessLogic.getClientBookings(currentClient);
 				if (of.size() == 0) {
 					showDialog("No tienes ninguna reserva");
 				} else {

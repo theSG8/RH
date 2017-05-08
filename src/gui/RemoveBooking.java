@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import businessLogic.FacadeImplementationWS;
+import domain.Booking;
 import domain.Offer;
 
 public class RemoveBooking extends JFrame {
@@ -43,7 +44,7 @@ public class RemoveBooking extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RemoveBooking(ApplicationFacadeInterfaceWS bl, Vector<Offer> of) {
+	public RemoveBooking(ApplicationFacadeInterfaceWS bl, Vector<Booking> bookings) {
 		setBusinessLogic(bl);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -61,8 +62,8 @@ public class RemoveBooking extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (list.getSelectedValue() != null) {
-					Offer of = list.getSelectedValue();
-					businessLogic.cancelBooking(CliOptions.currentClient, of);
+					//Offer of = list.getSelectedValue();
+					businessLogic.cancelBooking(bookings.elementAt(list.getSelectedIndex()));
 					listModel.remove(list.getSelectedIndex());
 				}
 			}
@@ -70,8 +71,8 @@ public class RemoveBooking extends JFrame {
 		btnEliminarReserva.setBounds(120, 201, 194, 38);
 		contentPane.add(btnEliminarReserva);
 
-		for (Offer o : of) {
-			listModel.addElement(o);
+		for (Booking b : bookings) {
+			listModel.addElement(b.getOf());
 		}
 	}
 

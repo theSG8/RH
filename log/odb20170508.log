@@ -1,0 +1,60 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-08 18:34:10 #1 store] 
+Database 'C:\Users\ivan7\git\RepositoryRH\resources\ruralHouses.odb' has been recovered (tr. 27-27)
+
+[2017-05-08 18:34:10 #2 store] 
+Database 'C:\Users\ivan7\git\RepositoryRH\resources\ruralHouses.odb' is opened by 8248@ivan7-PC
+
+[2017-05-08 18:34:10 #3 type] 
+Type domain.Owner is not enhanced.
+
+[2017-05-08 18:34:10 #4 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-05-08 18:34:10 #5 type] 
+Type domain.Offer is not enhanced.
+
+[2017-05-08 18:34:10 #6 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-08 18:37:24 #1 store] 
+Database 'C:\Users\ivan7\git\RepositoryRH\resources\ruralHouses.odb' is opened by 9876@ivan7-PC
+
+[2017-05-08 18:37:24 #2 type] 
+Type domain.Owner is not enhanced.
+
+[2017-05-08 18:37:24 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-05-08 18:37:24 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-05-08 18:37:24 #5 type] 
+Type domain.Client is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-05-08 18:38:56 #1 store] 
+Database 'C:\Users\ivan7\git\RepositoryRH\resources\ruralHouses.odb' is opened by 9812@ivan7-PC
+
+[2017-05-08 18:38:56 #2 type] 
+Type domain.Owner is not enhanced.
+
+[2017-05-08 18:38:56 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-05-08 18:38:56 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-05-08 18:38:56 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-05-08 18:39:09 #6 type.registry] 
+New type domain.Booking
+
+[2017-05-08 18:39:09 #7 type] 
+Type domain.Booking is not enhanced.
+
