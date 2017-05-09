@@ -132,8 +132,6 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 
-
-
 	@Override
 	public Owner makeOwnerLogin(String user, String pass) throws WrongPassword, UserNotExist {
 		DataAccess dbManager = new DataAccess();
@@ -185,8 +183,9 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	// A�ade un nuevo owner, llamando al metodo de la base de datos
-	public void addNewOwner(String username, String password, String nombre, String apellido, String dni, String email, String cuenta) throws UserAlreadyExists {
-		Owner o = new Owner(username, password,nombre, apellido, dni, email, cuenta, null);
+	public void addNewOwner(String username, String password, String nombre, String apellido, String dni, String email,
+			String cuenta) throws UserAlreadyExists {
+		Owner o = new Owner(username, password, nombre, apellido, dni, email, cuenta, null);
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeNewOwner(o);
 		dbManager.close();
@@ -204,20 +203,22 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	// Comprueba las contrase�as del registro de owner, y si coinciden a�ade ese
 	// owner a la BD
 	@Override
-	public void checkAddOwner(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists {
+	public void checkAddOwner(String username, String pw1, String pw2, String nombre, String apellido, String dni,
+			String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists {
 		checkDoublePassword(pw1, pw2);
 		addNewOwner(username, pw1, nombre, apellido, dni, email, cuenta);
 	}
 
 	@Override
-	public void checkAddClient(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta)
-			throws PasswordsDoesNotMatch, UserAlreadyExists {
+	public void checkAddClient(String username, String pw1, String pw2, String nombre, String apellido, String dni,
+			String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists {
 		checkDoublePassword(pw1, pw2);
 		addNewClient(username, pw1, nombre, apellido, dni, email, cuenta);
 	}
 
 	@Override
-	public void addNewClient(String username, String password, String nombre, String apellido, String dni, String email, String cuenta) throws UserAlreadyExists {
+	public void addNewClient(String username, String password, String nombre, String apellido, String dni, String email,
+			String cuenta) throws UserAlreadyExists {
 		Client c = new Client(username, password, nombre, apellido, dni, email, cuenta, null);
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeNewClient(c);
@@ -360,6 +361,24 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		Vector<OwnerReport> res = new Vector<OwnerReport>();
 		DataAccess dbManager = new DataAccess();
 		res = dbManager.getOwnerReports();
+		dbManager.close();
+		return res;
+	}
+
+	@Override
+	public Vector<Client> getAllClients() {
+		Vector<Client> res = new Vector<Client>();
+		DataAccess dbManager = new DataAccess();
+		res = dbManager.getAllClients();
+		dbManager.close();
+		return res;
+	}
+
+	@Override
+	public Vector<Owner> getAllOwners() {
+		Vector<Owner> res = new Vector<Owner>();
+		DataAccess dbManager = new DataAccess();
+		res = dbManager.getAllOwners();
 		dbManager.close();
 		return res;
 	}

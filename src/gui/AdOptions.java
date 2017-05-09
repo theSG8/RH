@@ -23,19 +23,20 @@ import domain.OwnerReport;
 public class AdOptions extends JFrame {
 
 	private JPanel contentPane;
-	private ApplicationFacadeInterfaceWS businessLogic;
 	public static Admin currentAdmin;
+	private ApplicationFacadeInterfaceWS businessLogic;
 	private final Action action = new SwingAction();
 
 	public AdOptions(ApplicationFacadeInterfaceWS bl, Admin current) {
 
 		setBusinessLogic(bl);
-		currentAdmin = current;
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		currentAdmin = current;
 
 		JButton btnReports = new JButton("View Reports");
 		btnReports.addActionListener(new ActionListener() {
@@ -56,6 +57,19 @@ public class AdOptions extends JFrame {
 		lblEstsLogeadoComo.setBounds(10, 236, 174, 14);
 		contentPane.add(lblEstsLogeadoComo);
 		lblEstsLogeadoComo.setText("Estás logeado como: " + currentAdmin.getUsername());
+
+		JButton btnLogout = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OwnOptions.btnLogout.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnLogout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				LoginGUI lg = new LoginGUI(bl);
+				currentAdmin = null;
+				lg.setVisible(true);
+				closeAdOp();
+			}
+		});
+		btnLogout.setBounds(335, 227, 89, 23);
+		contentPane.add(btnLogout);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {

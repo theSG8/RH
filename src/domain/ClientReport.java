@@ -9,6 +9,8 @@ public class ClientReport extends Report {
 	@Id
 	String id;
 	private Client client;
+	private String name;
+	private String description;
 
 	public ClientReport() {
 		id = "";
@@ -25,5 +27,21 @@ public class ClientReport extends Report {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

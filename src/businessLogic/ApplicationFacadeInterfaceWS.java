@@ -80,7 +80,8 @@ public interface ApplicationFacadeInterfaceWS {
 	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms,
 			String nBathRooms, String nDrooms, String nParking);
 
-	public void checkAddOwner(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
+	public void checkAddOwner(String username, String pw1, String pw2, String nombre, String apellido, String dni,
+			String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
 
 	public void removeOffer(Offer of);
 
@@ -92,9 +93,11 @@ public interface ApplicationFacadeInterfaceWS {
 
 	public Vector<Offer> getOwnerOffers(Owner ow);
 
-	public void checkAddClient(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
+	public void checkAddClient(String username, String pw1, String pw2, String nombre, String apellido, String dni,
+			String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
 
-	public void addNewClient(String username, String password, String nombre, String apellido, String dni, String email, String cuenta) throws UserAlreadyExists;
+	public void addNewClient(String username, String password, String nombre, String apellido, String dni, String email,
+			String cuenta) throws UserAlreadyExists;
 
 	public Client makeClientLogin(String user, String pass) throws WrongPassword, UserNotExist;
 
@@ -117,4 +120,8 @@ public interface ApplicationFacadeInterfaceWS {
 	public Vector<ClientReport> getClientReports();
 
 	public Vector<OwnerReport> getOwnerReports();
+
+	public Vector<Client> getAllClients();
+
+	public Vector<Owner> getAllOwners();
 }
