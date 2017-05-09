@@ -7,14 +7,19 @@ import javax.persistence.Id;
 public class Report {
 
 	@Id
+	private
 	String id;
 
 	public Report() {
-		id = "";
+		setId("");
 	}
 
 	public String getId() {
 		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
