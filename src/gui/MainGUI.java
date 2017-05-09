@@ -117,9 +117,8 @@ public class MainGUI extends JFrame {
 			boton2.addActionListener(new java.awt.event.ActionListener() {
 				@Override
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					// ESTE BOTON LLAMA AL METODO DE XABI DE MOSTRAR LAS CASAS
-					// RURALES Y LAS OFERTAS
-					// SIN LOGEARTE
+					RegisterGUI reg = new RegisterGUI(getBusinessLogic());
+					reg.setVisible(true);
 					close();
 				}
 			});
@@ -142,7 +141,6 @@ public class MainGUI extends JFrame {
 					LoginGUI log = new LoginGUI(getBusinessLogic());
 					log.setVisible(true);
 					close();
-					log.setVisible(true);
 				}
 			});
 		}

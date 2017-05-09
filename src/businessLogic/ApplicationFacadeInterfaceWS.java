@@ -75,14 +75,12 @@ public interface ApplicationFacadeInterfaceWS {
 	@WebMethod
 	public void initializeBD();
 
-	public void addNewUser(String user, String pass) throws UserAlreadyExists;
-
 	public Owner makeOwnerLogin(String user, String pass) throws WrongPassword, UserNotExist;
 
 	public RuralHouse addHouse(String des, String city, Owner current, String nKitchens, String nBedRooms,
 			String nBathRooms, String nDrooms, String nParking);
 
-	public void checkAddOwner(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists;
+	public void checkAddOwner(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
 
 	public void removeOffer(Offer of);
 
@@ -94,9 +92,9 @@ public interface ApplicationFacadeInterfaceWS {
 
 	public Vector<Offer> getOwnerOffers(Owner ow);
 
-	public void checkAddClient(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists;
+	public void checkAddClient(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
 
-	public void addNewClient(String username, String password) throws UserAlreadyExists;
+	public void addNewClient(String username, String password, String nombre, String apellido, String dni, String email, String cuenta) throws UserAlreadyExists;
 
 	public Client makeClientLogin(String user, String pass) throws WrongPassword, UserNotExist;
 

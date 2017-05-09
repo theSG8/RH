@@ -11,13 +11,24 @@ public class Owner extends User {
 	@Id
 	String username;
 	String password;
+	String nombre;
+	String apellido;
+	String dni;
+	String email;
+	String cuenta;
 	Vector<RuralHouse> ruralHouses;
 
-	public Owner(String username, String password) {
+	public Owner(String username, String password, String nombre,
+			String apellido, String dni, String email, String cuenta, Vector<RuralHouse> ruralHouses) {
 		super();
 		this.username = username;
 		this.password = password;
-		ruralHouses = new Vector<RuralHouse>();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.email = email;
+		this.cuenta = cuenta;
+		this.ruralHouses = ruralHouses;
 	}
 
 	public String getUsername() {
@@ -38,6 +49,46 @@ public class Owner extends User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(String cuenta) {
+		this.cuenta = cuenta;
 	}
 
 	public int countHouses() {

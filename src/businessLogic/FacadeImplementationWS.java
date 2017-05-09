@@ -132,14 +132,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 
 	}
 
-	@Override
-	public void addNewUser(String user, String pass) throws UserAlreadyExists {
-		Owner ow = new Owner(user, pass);
-		DataAccess dbManager = new DataAccess();
-		dbManager.storeNewOwner(ow);
-		dbManager.close();
 
-	}
 
 	@Override
 	public Owner makeOwnerLogin(String user, String pass) throws WrongPassword, UserNotExist {
@@ -192,8 +185,8 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	}
 
 	// A�ade un nuevo owner, llamando al metodo de la base de datos
-	public void addNewOwner(String username, String password) throws UserAlreadyExists {
-		Owner o = new Owner(username, password);
+	public void addNewOwner(String username, String password, String nombre, String apellido, String dni, String email, String cuenta) throws UserAlreadyExists {
+		Owner o = new Owner(username, password,nombre, apellido, dni, email, cuenta, null);
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeNewOwner(o);
 		dbManager.close();
@@ -211,21 +204,21 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	// Comprueba las contrase�as del registro de owner, y si coinciden a�ade ese
 	// owner a la BD
 	@Override
-	public void checkAddOwner(String username, String pw1, String pw2) throws PasswordsDoesNotMatch, UserAlreadyExists {
+	public void checkAddOwner(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists {
 		checkDoublePassword(pw1, pw2);
-		addNewOwner(username, pw1);
+		addNewOwner(username, pw1, nombre, apellido, dni, email, cuenta);
 	}
 
 	@Override
-	public void checkAddClient(String username, String pw1, String pw2)
+	public void checkAddClient(String username, String pw1, String pw2, String nombre, String apellido, String dni, String email, String cuenta)
 			throws PasswordsDoesNotMatch, UserAlreadyExists {
 		checkDoublePassword(pw1, pw2);
-		addNewClient(username, pw1);
+		addNewClient(username, pw1, nombre, apellido, dni, email, cuenta);
 	}
 
 	@Override
-	public void addNewClient(String username, String password) throws UserAlreadyExists {
-		Client c = new Client(username, password);
+	public void addNewClient(String username, String password, String nombre, String apellido, String dni, String email, String cuenta) throws UserAlreadyExists {
+		Client c = new Client(username, password, nombre, apellido, dni, email, cuenta, null);
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeNewClient(c);
 		dbManager.close();
