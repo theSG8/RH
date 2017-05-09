@@ -410,13 +410,13 @@ public class DataAccess {
 				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	private Vector<Admin> getAllAdmins() {
-		System.out.println(">> DataAccess: getAllUsers");
-		Vector<Admin> res = new Vector<>();
-		TypedQuery<Admin> query = db.createQuery("SELECT a FROM Admin a", Admin.class);
+		System.out.println(">> DataAccess: getAllAdmins");
+		Vector<Admin> res = new Vector<Admin>();
+		TypedQuery<Admin> query = db.createQuery("SELECT o FROM Admin o", Admin.class);
 		List<Admin> results = query.getResultList();
 		Iterator<Admin> itr = results.iterator();
 

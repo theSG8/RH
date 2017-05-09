@@ -61,11 +61,12 @@ public class LoginGUI extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws UserAlreadyExists 
-	 * @throws PasswordsDoesNotMatch 
+	 * 
+	 * @throws UserAlreadyExists
+	 * @throws PasswordsDoesNotMatch
 	 */
-	public LoginGUI(ApplicationFacadeInterfaceWS bl)  {
-		
+	public LoginGUI(ApplicationFacadeInterfaceWS bl) {
+
 		setBusinessLogic(bl);
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -188,7 +189,7 @@ public class LoginGUI extends JFrame {
 		buttonGroup.add(clientRB);
 		clientRB.setBounds(191, 122, 127, 25);
 		contentPane.add(clientRB);
-		
+
 		adminRB = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.rdbtnAdmin.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		buttonGroup.add(adminRB);
 		adminRB.setBounds(331, 123, 109, 23);

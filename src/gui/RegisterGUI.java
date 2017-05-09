@@ -102,29 +102,24 @@ public class RegisterGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					if (!rdbtnOwner.isSelected() && !rdbtnClient.isSelected()) {
+						businessLogic.checkAddAdmin("admin", "admin", "admin");
+					}
 					if (rdbtnOwner.isSelected()) {
 						businessLogic.checkAddOwner(usernameField.getText(),
 								String.valueOf(passwordField.getPassword()),
-								String.valueOf(passwordField1.getPassword()),
-								nombreField.getText(),
-								apellidoField.getText(),
-								String.valueOf(dniField.getText()),
-								String.valueOf(emailField.getText()),
-								String.valueOf(cntcorField.getText())
-								);
+								String.valueOf(passwordField1.getPassword()), nombreField.getText(),
+								apellidoField.getText(), String.valueOf(dniField.getText()),
+								String.valueOf(emailField.getText()), String.valueOf(cntcorField.getText()));
 						showDialog(ResourceBundle.getBundle("Etiquetas").getString("CorrectRegister"));
 						closeFrame();
 					}
 					if (rdbtnClient.isSelected()) {
 						businessLogic.checkAddClient(usernameField.getText(),
 								String.valueOf(passwordField.getPassword()),
-								String.valueOf(passwordField1.getPassword()),
-								nombreField.getText(),
-								apellidoField.getText(),
-								String.valueOf(dniField.getText()),
-								String.valueOf(emailField.getText()),
-								String.valueOf(cntcorField.getText())
-								);
+								String.valueOf(passwordField1.getPassword()), nombreField.getText(),
+								apellidoField.getText(), String.valueOf(dniField.getText()),
+								String.valueOf(emailField.getText()), String.valueOf(cntcorField.getText()));
 						showDialog(ResourceBundle.getBundle("Etiquetas").getString("CorrectRegister"));
 						closeFrame();
 					}
@@ -146,52 +141,52 @@ public class RegisterGUI extends JFrame {
 		passwordField1 = new JPasswordField();
 		passwordField1.setBounds(218, 68, 148, 22);
 		contentPane.add(passwordField1);
-		
+
 		JLabel lblNombre = new JLabel("Nombre"); //$NON-NLS-1$ //$NON-NLS-2$
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNombre.setBounds(29, 100, 185, 16);
 		contentPane.add(lblNombre);
-		
+
 		nombreField = new JTextField();
 		nombreField.setBounds(218, 97, 148, 22);
 		contentPane.add(nombreField);
 		nombreField.setColumns(10);
-		
+
 		apellidoField = new JTextField();
 		apellidoField.setBounds(218, 126, 148, 22);
 		contentPane.add(apellidoField);
 		apellidoField.setColumns(10);
-		
+
 		JLabel lblApellido = new JLabel("Apellido"); //$NON-NLS-1$ //$NON-NLS-2$
 		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblApellido.setBounds(29, 129, 185, 16);
 		contentPane.add(lblApellido);
-		
+
 		JLabel lblDni = new JLabel("DNI"); //$NON-NLS-1$ //$NON-NLS-2$
 		lblDni.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblDni.setBounds(29, 156, 185, 16);
 		contentPane.add(lblDni);
-		
+
 		dniField = new JTextField();
 		dniField.setBounds(218, 153, 148, 22);
 		contentPane.add(dniField);
 		dniField.setColumns(10);
-		
+
 		JLabel lblEmail = new JLabel("Email"); //$NON-NLS-1$ //$NON-NLS-2$
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblEmail.setBounds(29, 185, 185, 16);
 		contentPane.add(lblEmail);
-		
+
 		emailField = new JTextField();
 		emailField.setBounds(218, 182, 148, 22);
 		contentPane.add(emailField);
 		emailField.setColumns(10);
-		
-		JLabel lblCuentaCorriente = new JLabel("Cuenta"); 
+
+		JLabel lblCuentaCorriente = new JLabel("Cuenta");
 		lblCuentaCorriente.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCuentaCorriente.setBounds(29, 214, 185, 16);
 		contentPane.add(lblCuentaCorriente);
-		
+
 		cntcorField = new JTextField();
 		cntcorField.setBounds(218, 211, 148, 22);
 		contentPane.add(cntcorField);
