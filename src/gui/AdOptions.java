@@ -45,6 +45,8 @@ public class AdOptions extends JFrame {
 				Vector<ClientReport> cliRep = businessLogic.getClientReports();
 				Vector<HouseReport> houseRep = businessLogic.getHouseReports();
 				Vector<OwnerReport> ownRep = businessLogic.getOwnerReports();
+				ViewReportsGUI vr = new ViewReportsGUI(cliRep, houseRep, ownRep);
+				vr.setVisible(true);
 			}
 		});
 		btnReports.setBounds(120, 25, 192, 39);

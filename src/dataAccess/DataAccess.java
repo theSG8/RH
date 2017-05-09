@@ -443,7 +443,7 @@ public class DataAccess {
 	}
 
 	public Vector<ClientReport> getClientReports() {
-		System.out.println(">> DataAccess: getHouseReports");
+		System.out.println(">> DataAccess: getClientReports");
 		Vector<ClientReport> res = new Vector<ClientReport>();
 		TypedQuery<ClientReport> query = db.createQuery("SELECT a FROM ClientReport a", ClientReport.class);
 
@@ -458,7 +458,7 @@ public class DataAccess {
 	}
 
 	public Vector<OwnerReport> getOwnerReports() {
-		System.out.println(">> DataAccess: getHouseReports");
+		System.out.println(">> DataAccess: getOwnerReports");
 		Vector<OwnerReport> res = new Vector<OwnerReport>();
 		TypedQuery<OwnerReport> query = db.createQuery("SELECT a FROM OwnerReport a", OwnerReport.class);
 
