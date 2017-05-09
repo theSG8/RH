@@ -176,6 +176,9 @@ public class BookOfferGui extends JFrame {
 		contentPane.add(btnBuscar);
 
 		JButton btnReservar = new JButton("RESERVAR");
+		if (CliOptions.currentClient==null){
+			btnReservar.setEnabled(false);	
+		}
 		btnReservar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
