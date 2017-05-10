@@ -70,6 +70,18 @@ public class AdOptions extends JFrame {
 		});
 		btnLogout.setBounds(335, 227, 89, 23);
 		contentPane.add(btnLogout);
+
+		JButton btnWriteReports = new JButton(
+				ResourceBundle.getBundle("Etiquetas").getString("AdOptions.btnWriteReports.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnWriteReports.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				CreateReportGUI cr = new CreateReportGUI(bl);
+				cr.setVisible(true);
+			}
+		});
+		btnWriteReports.setBounds(120, 83, 192, 39);
+		contentPane.add(btnWriteReports);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {

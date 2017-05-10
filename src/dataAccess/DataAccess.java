@@ -113,7 +113,7 @@ public class DataAccess {
 	}
 
 	public Vector<RuralHouse> getAllRuralHouses() {
-		System.out.println(">> DataAccess: getAllRuralHouses");
+		System.out.println(">> DataAccess: getAllRuralHouses DA");
 		Vector<RuralHouse> res = new Vector<>();
 
 		TypedQuery<RuralHouse> query = db.createQuery("SELECT c FROM RuralHouse c", RuralHouse.class);

@@ -104,6 +104,8 @@ public class RegisterGUI extends JFrame {
 				try {
 					if (!rdbtnOwner.isSelected() && !rdbtnClient.isSelected()) {
 						businessLogic.checkAddAdmin("admin", "admin", "admin");
+						showDialog(ResourceBundle.getBundle("Etiquetas").getString("CorrectRegister"));
+						closeFrame();
 					}
 					if (rdbtnOwner.isSelected()) {
 						businessLogic.checkAddOwner(usernameField.getText(),

@@ -22,8 +22,8 @@ import domain.ClientReport;
 import domain.HouseReport;
 import domain.Owner;
 import domain.OwnerReport;
-import domain.Report;
 import domain.RuralHouse;
+import domain.User;
 
 public class CreateReportGUI extends JFrame {
 
@@ -35,8 +35,9 @@ public class CreateReportGUI extends JFrame {
 	public Vector<OwnerReport> ownRep;
 	private ApplicationFacadeInterfaceWS businessLogic;
 
-	private DefaultListModel<Object> listModel = new DefaultListModel<>();
-	private JList<Report> list;
+	private DefaultListModel<User> listModelU = new DefaultListModel<User>();
+	private DefaultListModel<RuralHouse> listModelH = new DefaultListModel<RuralHouse>();
+
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -45,18 +46,13 @@ public class CreateReportGUI extends JFrame {
 	public CreateReportGUI(ApplicationFacadeInterfaceWS bl) {
 
 		businessLogic = bl;
+		Vector<RuralHouse> houses = bl.getAllRuralHouses();
+		Vector<Client> clients = bl.getAllClients();
+		Vector<Owner> owners = bl.getAllOwners();
 
 		cliRep = businessLogic.getClientReports();
 		houseRep = businessLogic.getHouseReports();
 		ownRep = businessLogic.getOwnerReports();
-
-		JList list = new JList();
-		list.setBounds(37, 314, 360, 145);
-		list.setModel(listModel);
-		for (RuralHouse hs : bl.getAllRuralHouses()) {
-			listModel.addElement(hs);
-		}
-		contentPane.add(list);
 
 		setBounds(100, 100, 454, 578);
 		contentPane = new JPanel();
@@ -64,30 +60,60 @@ public class CreateReportGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// AQUI
+
+		JList list = new JList();
+		list.setBounds(37, 323, 354, 147);
+
+		list.setModel(listModelH);
+		for (RuralHouse rh : houses) {
+			listModelH.addElement(rh);
+		}
+
+		contentPane.add(list);
+
+		JList list_1 = new JList();
+		list_1.setBounds(37, 323, 354, 147);
+		list_1.setModel(listModelU);
+		contentPane.add(list_1);
+
+		list_1.setVisible(false);
+
+		// AQUI
+
 		JRadioButton rdbtnCasaRural = new JRadioButton("Casa Rural");
 		buttonGroup.add(rdbtnCasaRural);
 		rdbtnCasaRural.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				listModel.clear();
-				for (RuralHouse hs : bl.getAllRuralHouses()) {
-					listModel.addElement(hs);
+
+				list.setVisible(true);
+				list_1.setVisible(false);
+
+				listModelH.clear();
+				for (RuralHouse hs : houses) {
+					listModelH.addElement(hs);
 				}
+
 			}
 		});
 		rdbtnCasaRural.setBounds(37, 68, 109, 23);
 		contentPane.add(rdbtnCasaRural);
-		rdbtnCasaRural.setSelected(true);
 
 		JRadioButton rdbtnCliente = new JRadioButton("Cliente");
 		buttonGroup.add(rdbtnCliente);
 		rdbtnCliente.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				listModel.clear();
-				for (Client cl : bl.getAllClients()) {
-					listModel.addElement(cl);
+
+				list.setVisible(false);
+				list_1.setVisible(true);
+
+				listModelU.clear();
+				for (Client cl : clients) {
+					listModelU.addElement(cl);
 				}
+
 			}
 		});
 		rdbtnCliente.setBounds(171, 68, 81, 23);
@@ -98,10 +124,15 @@ public class CreateReportGUI extends JFrame {
 		rdbtnPropietario.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				listModel.clear();
-				for (Owner ow : bl.getAllOwners()) {
-					listModel.addElement(ow);
+
+				list.setVisible(false);
+				list_1.setVisible(true);
+
+				listModelU.clear();
+				for (Owner ow : owners) {
+					listModelU.addElement(ow);
 				}
+
 			}
 		});
 		rdbtnPropietario.setBounds(282, 68, 109, 23);
@@ -139,6 +170,5 @@ public class CreateReportGUI extends JFrame {
 		lblAadirInforme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
 		lblAadirInforme.setBounds(144, 22, 135, 23);
 		contentPane.add(lblAadirInforme);
-
 	}
 }
