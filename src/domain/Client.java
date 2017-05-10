@@ -20,11 +20,8 @@ public class Client extends User {
 	@OneToMany(fetch = FetchType.EAGER)
 	Vector<Offer> bookedOffers;
 
-	
-
-	public Client(String username, String password, String nombre,
-			String apellido, String dni, String email, String cuenta,
-			Vector<Offer> bookedOffers) {
+	public Client(String username, String password, String nombre, String apellido, String dni, String email,
+			String cuenta, Vector<Offer> bookedOffers) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -111,6 +108,12 @@ public class Client extends User {
 
 	public void removeBooking(Offer o) {
 		bookedOffers.remove(o);
+
+	}
+
+	@Override
+	public String toString() {
+		return "UN: " + username + ", N:" + nombre + " " + apellido + ", DNI:" + dni;
 
 	}
 }

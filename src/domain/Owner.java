@@ -18,8 +18,8 @@ public class Owner extends User {
 	String cuenta;
 	Vector<RuralHouse> ruralHouses;
 
-	public Owner(String username, String password, String nombre,
-			String apellido, String dni, String email, String cuenta, Vector<RuralHouse> ruralHouses) {
+	public Owner(String username, String password, String nombre, String apellido, String dni, String email,
+			String cuenta, Vector<RuralHouse> ruralHouses) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -50,7 +50,7 @@ public class Owner extends User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -107,6 +107,12 @@ public class Owner extends User {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "UN: " + username + ", N:" + nombre + " " + apellido + ", DNI:" + dni;
+
 	}
 
 }

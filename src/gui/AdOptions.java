@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -54,7 +56,9 @@ public class AdOptions extends JFrame {
 
 		JLabel lblEstsLogeadoComo = new JLabel(
 				ResourceBundle.getBundle("Etiquetas").getString("CliOptions.lblEstsLogeadoComo.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		lblEstsLogeadoComo.setBounds(10, 236, 174, 14);
+		lblEstsLogeadoComo.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblEstsLogeadoComo.setForeground(Color.RED);
+		lblEstsLogeadoComo.setBounds(10, 236, 192, 14);
 		contentPane.add(lblEstsLogeadoComo);
 		lblEstsLogeadoComo.setText("Estás logeado como: " + currentAdmin.getUsername());
 
