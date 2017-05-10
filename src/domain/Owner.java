@@ -111,7 +111,7 @@ public class Owner extends User {
 
 	@Override
 	public String toString() {
-		return "UN: " + username + ", N:" + nombre + " " + apellido + ", DNI:" + dni;
+		return "UN: " + username + ", N: " + nombre + " " + apellido + ", DNI: " + dni;
 
 	}
 

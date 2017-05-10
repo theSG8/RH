@@ -18,6 +18,7 @@ import domain.Owner;
 import domain.OwnerReport;
 import domain.RuralHouse;
 import exceptions.BadDates;
+import exceptions.ExistingTitleException;
 import exceptions.OverlappingOfferExists;
 import exceptions.PasswordsDoesNotMatch;
 import exceptions.UserAlreadyExists;
@@ -124,4 +125,10 @@ public interface ApplicationFacadeInterfaceWS {
 	public Vector<Client> getAllClients();
 
 	public Vector<Owner> getAllOwners();
+
+	public void addNewHouseReport(HouseReport hr) throws ExistingTitleException;
+
+	public void addNewClientReport(ClientReport cr) throws ExistingTitleException;
+
+	public void addNewOwnerReport(OwnerReport or) throws ExistingTitleException;
 }

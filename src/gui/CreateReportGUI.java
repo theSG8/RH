@@ -11,9 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
@@ -23,19 +25,20 @@ import domain.HouseReport;
 import domain.Owner;
 import domain.OwnerReport;
 import domain.RuralHouse;
-import domain.User;
+import exceptions.ExistingTitleException;
 
 public class CreateReportGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtA;
 	public Vector<ClientReport> cliRep;
 	public Vector<HouseReport> houseRep;
 	public Vector<OwnerReport> ownRep;
 	private ApplicationFacadeInterfaceWS businessLogic;
 
-	private DefaultListModel<User> listModelU = new DefaultListModel<User>();
+	private DefaultListModel<Client> listModelC = new DefaultListModel<Client>();
+	private DefaultListModel<Owner> listModelO = new DefaultListModel<Owner>();
 	private DefaultListModel<RuralHouse> listModelH = new DefaultListModel<RuralHouse>();
 
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -62,7 +65,7 @@ public class CreateReportGUI extends JFrame {
 
 		// AQUI
 
-		JList list = new JList();
+		JList<RuralHouse> list = new JList();
 		list.setBounds(37, 323, 354, 147);
 
 		list.setModel(listModelH);
@@ -72,13 +75,17 @@ public class CreateReportGUI extends JFrame {
 
 		contentPane.add(list);
 
-		JList list_1 = new JList();
+		JList<Client> list_1 = new JList();
 		list_1.setBounds(37, 323, 354, 147);
-		list_1.setModel(listModelU);
+		list_1.setModel(listModelC);
 		contentPane.add(list_1);
 
 		list_1.setVisible(false);
 
+		JList<Owner> list_2 = new JList();
+		list_2.setBounds(37, 323, 354, 147);
+		list_2.setModel(listModelO);
+		contentPane.add(list_2);
 		// AQUI
 
 		JRadioButton rdbtnCasaRural = new JRadioButton("Casa Rural");
@@ -89,6 +96,7 @@ public class CreateReportGUI extends JFrame {
 
 				list.setVisible(true);
 				list_1.setVisible(false);
+				list_2.setVisible(false);
 
 				listModelH.clear();
 				for (RuralHouse hs : houses) {
@@ -99,6 +107,7 @@ public class CreateReportGUI extends JFrame {
 		});
 		rdbtnCasaRural.setBounds(37, 68, 109, 23);
 		contentPane.add(rdbtnCasaRural);
+		rdbtnCasaRural.setSelected(true);
 
 		JRadioButton rdbtnCliente = new JRadioButton("Cliente");
 		buttonGroup.add(rdbtnCliente);
@@ -108,10 +117,11 @@ public class CreateReportGUI extends JFrame {
 
 				list.setVisible(false);
 				list_1.setVisible(true);
+				list_2.setVisible(false);
 
-				listModelU.clear();
+				listModelC.clear();
 				for (Client cl : clients) {
-					listModelU.addElement(cl);
+					listModelC.addElement(cl);
 				}
 
 			}
@@ -126,11 +136,12 @@ public class CreateReportGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				list.setVisible(false);
-				list_1.setVisible(true);
+				list_1.setVisible(false);
+				list_2.setVisible(true);
 
-				listModelU.clear();
+				listModelO.clear();
 				for (Owner ow : owners) {
-					listModelU.addElement(ow);
+					listModelO.addElement(ow);
 				}
 
 			}
@@ -143,10 +154,11 @@ public class CreateReportGUI extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(37, 192, 360, 94);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtA = new JTextField();
+		txtA.setHorizontalAlignment(SwingConstants.LEFT);
+		txtA.setBounds(37, 192, 360, 94);
+		contentPane.add(txtA);
+		txtA.setColumns(10);
 
 		JLabel lblDescripcin = new JLabel("Descripción");
 		lblDescripcin.setBounds(37, 167, 81, 14);
@@ -160,7 +172,58 @@ public class CreateReportGUI extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ClientReport cl = new ClientReport();
+
+				if (rdbtnCasaRural.isSelected()) {
+					if (list.getSelectedValue() != null) {
+						try {
+							HouseReport hr = new HouseReport(list.getSelectedValue(), textField.getText(),
+									txtA.getText());
+							businessLogic.addNewHouseReport(hr);
+							showDialog("Informe creado correctamente");
+							textField.setText("");
+							txtA.setText("");
+							listModelH.clear();
+						} catch (ExistingTitleException e) {
+							showDialog("Ya existe un informe con ese titulo");
+						}
+					} else {
+						showDialog("Selecciona una casa rural de la lista");
+					}
+				}
+				if (rdbtnCliente.isSelected()) {
+					if (list_1.getSelectedValue() != null) {
+						try {
+							ClientReport cr = new ClientReport(list_1.getSelectedValue(), textField.getText(),
+									txtA.getText());
+							businessLogic.addNewClientReport(cr);
+							showDialog("Informe creado correctamente");
+							textField.setText("");
+							txtA.setText("");
+						} catch (ExistingTitleException e) {
+							showDialog("Ya existe un informe con ese titulo");
+						}
+					} else {
+						showDialog("Selecciona un cliente de la lista");
+					}
+				}
+				if (rdbtnPropietario.isSelected()) {
+					if (list_2.getSelectedValue() != null) {
+						try {
+
+							OwnerReport or = new OwnerReport(list_2.getSelectedValue(), textField.getText(),
+									txtA.getText());
+							businessLogic.addNewOwnerReport(or);
+							showDialog("Informe creado correctamente");
+							textField.setText("");
+							txtA.setText("");
+						} catch (ExistingTitleException e) {
+							showDialog("Ya existe un informe con ese titulo");
+						}
+					} else {
+						showDialog("Selecciona un propietario de la lista");
+					}
+				}
+
 			}
 		});
 		btnAceptar.setBounds(171, 494, 89, 23);
@@ -170,5 +233,11 @@ public class CreateReportGUI extends JFrame {
 		lblAadirInforme.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
 		lblAadirInforme.setBounds(144, 22, 135, 23);
 		contentPane.add(lblAadirInforme);
+
+	}
+
+	private void showDialog(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+
 	}
 }

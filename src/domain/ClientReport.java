@@ -6,19 +6,18 @@ import javax.persistence.Id;
 @Entity
 public class ClientReport extends Report {
 
-	@Id
-	String id;
 	private Client client;
-	private String name;
+	@Id
+	private String title;
 	private String description;
 
 	public ClientReport() {
-		id = "";
 	}
 
-	@Override
-	public String getId() {
-		return id;
+	public ClientReport(Client client, String title, String desc) {
+		this.client = client;
+		this.title = title;
+		this.description = desc;
 	}
 
 	public Client getClient() {
@@ -29,19 +28,28 @@ public class ClientReport extends Report {
 		this.client = client;
 	}
 
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public String getName() {
-		return name;
+	@Override
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	@Override
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Override
+	public String toString() {
+		return "CL: " + client + " TI: " + title;
 	}
 }

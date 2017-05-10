@@ -6,17 +6,18 @@ import javax.persistence.Id;
 @Entity
 public class HouseReport extends Report {
 
-	@Id
-	String id;
 	private RuralHouse ruralHouse;
+	@Id
+	private String title;
+	private String description;
 
 	public HouseReport() {
-		id = "";
 	}
 
-	@Override
-	public String getId() {
-		return id;
+	public HouseReport(RuralHouse rh, String title, String desc) {
+		this.ruralHouse = rh;
+		this.title = title;
+		this.description = desc;
 	}
 
 	public RuralHouse getRuralHouse() {
@@ -25,5 +26,30 @@ public class HouseReport extends Report {
 
 	public void setRuralHouse(RuralHouse ruralHouse) {
 		this.ruralHouse = ruralHouse;
+	}
+
+	@Override
+	public String getTitle() {
+		return title;
+	}
+
+	@Override
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+		return "RH: " + ruralHouse + " TI: " + title;
 	}
 }

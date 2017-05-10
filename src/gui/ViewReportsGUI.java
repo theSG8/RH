@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
@@ -59,6 +60,18 @@ public class ViewReportsGUI extends JFrame {
 		contentPane.add(list);
 
 		JButton btnVer = new JButton("Ver");
+		btnVer.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (list.getSelectedValue() == null) {
+					showDialog("Por favor, selecciona un elemento de la lista");
+				} else {
+					ViewConcreteReportGUI vcr = new ViewConcreteReportGUI(list.getSelectedValue().getTitle(),
+							list.getSelectedValue().getDescription(), list.getSelectedValue().toString());
+					vcr.setVisible(true);
+				}
+			}
+		});
 		btnVer.setBounds(89, 304, 145, 38);
 		contentPane.add(btnVer);
 
@@ -111,5 +124,10 @@ public class ViewReportsGUI extends JFrame {
 		lblInformes.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 24));
 		lblInformes.setBounds(108, 30, 121, 56);
 		contentPane.add(lblInformes);
+	}
+
+	private void showDialog(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+
 	}
 }

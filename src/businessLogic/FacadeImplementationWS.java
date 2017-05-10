@@ -20,6 +20,7 @@ import domain.Owner;
 import domain.OwnerReport;
 import domain.RuralHouse;
 import exceptions.BadDates;
+import exceptions.ExistingTitleException;
 import exceptions.OverlappingOfferExists;
 import exceptions.PasswordsDoesNotMatch;
 import exceptions.UserAlreadyExists;
@@ -381,6 +382,27 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		res = dbManager.getAllOwners();
 		dbManager.close();
 		return res;
+	}
+
+	@Override
+	public void addNewHouseReport(HouseReport hr) throws ExistingTitleException {
+		DataAccess dbManager = new DataAccess();
+		dbManager.storeNewHouseReport(hr);
+		dbManager.close();
+	}
+
+	@Override
+	public void addNewClientReport(ClientReport cr) throws ExistingTitleException {
+		DataAccess dbManager = new DataAccess();
+		dbManager.storeNewClientReport(cr);
+		dbManager.close();
+	}
+
+	@Override
+	public void addNewOwnerReport(OwnerReport or) throws ExistingTitleException {
+		DataAccess dbManager = new DataAccess();
+		dbManager.storeNewOwnerReport(or);
+		dbManager.close();
 	}
 
 }

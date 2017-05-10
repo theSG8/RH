@@ -23,6 +23,7 @@ import domain.Offer;
 import domain.Owner;
 import domain.OwnerReport;
 import domain.RuralHouse;
+import exceptions.ExistingTitleException;
 import exceptions.OverlappingOfferExists;
 import exceptions.UserAlreadyExists;
 
@@ -470,6 +471,72 @@ public class DataAccess {
 		}
 
 		return res;
+	}
+
+	public void storeNewHouseReport(HouseReport hr) throws ExistingTitleException {
+		if (checkIfHouseReportExists(hr.getTitle())) {
+			db.getTransaction().begin();
+			db.persist(hr);
+			db.getTransaction().commit();
+		} else {
+			System.out.println("Titulo repetido");
+			throw new ExistingTitleException();
+		}
+	}
+
+	public void storeNewClientReport(ClientReport cr) throws ExistingTitleException {
+		if (checkIfClientReportExists(cr.getTitle())) {
+			db.getTransaction().begin();
+			db.persist(cr);
+			db.getTransaction().commit();
+		} else {
+			System.out.println("Titulo repetido");
+			throw new ExistingTitleException();
+		}
+	}
+
+	public void storeNewOwnerReport(OwnerReport or) throws ExistingTitleException {
+		if (checkIfOwnerReportExists(or.getTitle())) {
+			db.getTransaction().begin();
+			db.persist(or);
+			db.getTransaction().commit();
+		} else {
+			System.out.println("Titulo repetido");
+			throw new ExistingTitleException();
+		}
+	}
+
+	public boolean checkIfHouseReportExists(String title) {
+
+		Vector<HouseReport> hrs = getHouseReports();
+		for (HouseReport current : hrs) {
+			if (current.getTitle().equals(title)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean checkIfClientReportExists(String title) {
+
+		Vector<ClientReport> crs = getClientReports();
+		for (ClientReport current : crs) {
+			if (current.getTitle().equals(title)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean checkIfOwnerReportExists(String title) {
+
+		Vector<OwnerReport> ors = getOwnerReports();
+		for (OwnerReport current : ors) {
+			if (current.getTitle().equals(title)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
