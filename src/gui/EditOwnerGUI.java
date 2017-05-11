@@ -7,15 +7,28 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
+import domain.Owner;
+import domain.RuralHouse;
+import exceptions.PasswordsDoesNotMatch;
+import exceptions.UserAlreadyExists;
+import businessLogic.ApplicationFacadeInterfaceWS;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
 public class EditOwnerGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JTextField textField_1;
@@ -23,6 +36,8 @@ public class EditOwnerGUI extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private ApplicationFacadeInterfaceWS businessLogic;
+	private Owner currentOwner;
 
 	/**
 	 * Launch the application.
@@ -31,7 +46,7 @@ public class EditOwnerGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditOwnerGUI frame = new EditOwnerGUI();
+					EditOwnerGUI frame = new EditOwnerGUI(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,8 +58,10 @@ public class EditOwnerGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditOwnerGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public EditOwnerGUI(Owner current, ApplicationFacadeInterfaceWS bl) {
+		currentOwner = current;
+		businessLogic = bl;
+		
 		setBounds(100, 100, 450, 446);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,20 +74,10 @@ public class EditOwnerGUI extends JFrame {
 		panel.setBounds(0, 64, 432, 382);
 		contentPane.add(panel);
 		
-		JLabel label = new JLabel("User");
-		label.setFont(new Font("Tahoma", Font.BOLD, 13));
-		label.setBounds(29, 13, 177, 16);
-		panel.add(label);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(218, 10, 148, 22);
-		panel.add(textField);
-		
-		JLabel label_1 = new JLabel("Password");
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		label_1.setBounds(29, 42, 185, 16);
-		panel.add(label_1);
+		JLabel lblNewPassword = new JLabel("New Password");
+		lblNewPassword.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewPassword.setBounds(29, 42, 185, 16);
+		panel.add(lblNewPassword);
 		
 		JLabel label_2 = new JLabel("Repeat the password");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -78,6 +85,7 @@ public class EditOwnerGUI extends JFrame {
 		panel.add(label_2);
 		
 		passwordField = new JPasswordField();
+		
 		passwordField.setBounds(218, 39, 148, 21);
 		panel.add(passwordField);
 		
@@ -91,11 +99,13 @@ public class EditOwnerGUI extends JFrame {
 		panel.add(label_3);
 		
 		textField_1 = new JTextField();
+		textField_1.setText(currentOwner.getNombre());
 		textField_1.setColumns(10);
 		textField_1.setBounds(218, 97, 148, 22);
 		panel.add(textField_1);
 		
 		textField_2 = new JTextField();
+		textField_2.setText(currentOwner.getApellido());
 		textField_2.setColumns(10);
 		textField_2.setBounds(218, 126, 148, 22);
 		panel.add(textField_2);
@@ -111,6 +121,7 @@ public class EditOwnerGUI extends JFrame {
 		panel.add(label_5);
 		
 		textField_3 = new JTextField();
+		textField_3.setText(currentOwner.getDni());
 		textField_3.setColumns(10);
 		textField_3.setBounds(218, 153, 148, 22);
 		panel.add(textField_3);
@@ -121,6 +132,7 @@ public class EditOwnerGUI extends JFrame {
 		panel.add(label_6);
 		
 		textField_4 = new JTextField();
+		textField_4.setText(currentOwner.getEmail());
 		textField_4.setColumns(10);
 		textField_4.setBounds(218, 182, 148, 22);
 		panel.add(textField_4);
@@ -131,11 +143,29 @@ public class EditOwnerGUI extends JFrame {
 		panel.add(label_7);
 		
 		textField_5 = new JTextField();
+		textField_5.setText(currentOwner.getCuenta());
 		textField_5.setColumns(10);
 		textField_5.setBounds(218, 211, 148, 22);
 		panel.add(textField_5);
 		
 		JButton button = new JButton("Confirmar cambios");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					businessLogic.modifyOwner(currentOwner,
+							String.valueOf(passwordField.getPassword()),
+							String.valueOf(passwordField_1.getPassword()), textField_1.getText(),
+							textField_2.getText(), String.valueOf(textField_3.getText()),
+							String.valueOf(textField_4.getText()), String.valueOf(textField_5.getText()));
+				} catch (PasswordsDoesNotMatch | UserAlreadyExists e1) {
+					showDialog(ResourceBundle.getBundle("Etiquetas").getString("PasswordDoesNotMatch"));
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
 		button.setBounds(129, 257, 148, 54);
 		panel.add(button);
 		
@@ -143,6 +173,10 @@ public class EditOwnerGUI extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel.setBounds(150, 23, 115, 16);
 		contentPane.add(lblNewLabel);
+	}
+	private void showDialog(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+
 	}
 
 }

@@ -133,4 +133,10 @@ public interface ApplicationFacadeInterfaceWS {
 	public void addNewOwnerReport(OwnerReport or) throws ExistingTitleException;
 
 	void confirmHouse(RuralHouse rh);
+
+	public void removeOwner(Owner ow);
+
+	public void modifyOwner(Owner currentOwner, String pw1, String pw2, String nombre,
+			String apellido, String dni, String email, String cuenta)
+			throws PasswordsDoesNotMatch, UserAlreadyExists;
 }

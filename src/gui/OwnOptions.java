@@ -62,7 +62,7 @@ public class OwnOptions extends JFrame {
 		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("OwnerOptions"));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setBounds(105, 32, 207, 28);
+		lblNewLabel.setBounds(105, 13, 207, 28);
 		contentPane.add(lblNewLabel);
 		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas").getString("SetOffer"));
 		ownerOptions.addElement(ResourceBundle.getBundle("Etiquetas").getString("DeleteOffer"));
@@ -84,7 +84,7 @@ public class OwnOptions extends JFrame {
 
 			}
 		});
-		btnSetOffer.setBounds(105, 85, 207, 28);
+		btnSetOffer.setBounds(105, 54, 207, 28);
 		contentPane.add(btnSetOffer);
 
 		JButton btnDeleteOffer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteOffer")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -101,7 +101,7 @@ public class OwnOptions extends JFrame {
 				}
 			}
 		});
-		btnDeleteOffer.setBounds(105, 121, 207, 28);
+		btnDeleteOffer.setBounds(105, 95, 207, 28);
 		contentPane.add(btnDeleteOffer);
 
 		JButton btnAddHouse = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AddRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -113,7 +113,7 @@ public class OwnOptions extends JFrame {
 
 			}
 		});
-		btnAddHouse.setBounds(105, 161, 207, 28);
+		btnAddHouse.setBounds(105, 136, 207, 28);
 		contentPane.add(btnAddHouse);
 
 		JButton btnRemoveHouse = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteRuralHouse")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -130,7 +130,7 @@ public class OwnOptions extends JFrame {
 				}
 			}
 		});
-		btnRemoveHouse.setBounds(105, 200, 207, 28);
+		btnRemoveHouse.setBounds(105, 177, 207, 28);
 		contentPane.add(btnRemoveHouse);
 
 		JButton btnLogout = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OwnOptions.btnLogout.text")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -152,6 +152,16 @@ public class OwnOptions extends JFrame {
 		lblestasLogeadoComo.setBounds(10, 265, 207, 14);
 		contentPane.add(lblestasLogeadoComo);
 		lblestasLogeadoComo.setText("Estás logeado como: " + currentOwner.getUsername());
+		
+		JButton btnEditPerfil = new JButton("Editar Perfil"); //$NON-NLS-1$ //$NON-NLS-2$
+		btnEditPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EditOwnerGUI eo = new EditOwnerGUI(currentOwner, businessLogic);
+				eo.setVisible(true);
+			}
+		});
+		btnEditPerfil.setBounds(105, 218, 207, 28);
+		contentPane.add(btnEditPerfil);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {

@@ -547,4 +547,25 @@ public class DataAccess {
 		db.getTransaction().commit();
 	}
 
+	public void removeOwner(Owner ow) {
+		db.getTransaction().begin();
+		Owner owner = db.find(Owner.class, ow);
+		db.remove(owner);
+		db.getTransaction().commit();
+	}
+
+	public void modifyOwner(String un, String password, String nombre,
+			String apellido, String dni, String email, String cuenta) {
+		db.getTransaction().begin();
+		Owner ow = db.find(Owner.class, un);
+		ow.setPassword(password);
+		ow.setNombre(nombre);
+		ow.setApellido(apellido);
+		ow.setDni(dni);
+		ow.setEmail(email);
+		ow.setCuenta(cuenta);
+		db.getTransaction().commit();
+		
+	}
+
 }

@@ -16,7 +16,6 @@ import javax.swing.JPasswordField;
 public class EditClientGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JTextField textField_1;
@@ -62,16 +61,6 @@ public class EditClientGUI extends JFrame {
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panel.setBounds(0, 45, 432, 382);
 		contentPane.add(panel);
-		
-		JLabel label = new JLabel("User");
-		label.setFont(new Font("Tahoma", Font.BOLD, 13));
-		label.setBounds(29, 13, 177, 16);
-		panel.add(label);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(218, 10, 148, 22);
-		panel.add(textField);
 		
 		JLabel label_1 = new JLabel("Password");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 13));

@@ -26,6 +26,7 @@ import exceptions.PasswordsDoesNotMatch;
 import exceptions.UserAlreadyExists;
 import exceptions.UserNotExist;
 import exceptions.WrongPassword;
+import gui.OwnOptions;
 
 //Service Implementation
 @WebService(endpointInterface = "businessLogic.ApplicationFacadeInterfaceWS")
@@ -209,6 +210,23 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		checkDoublePassword(pw1, pw2);
 		addNewOwner(username, pw1, nombre, apellido, dni, email, cuenta);
 	}
+	
+	@Override
+	public void modifyOwner(Owner currentOwner, String pw1, String pw2, String nombre, String apellido, String dni,
+			String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists {
+		checkDoublePassword(pw1, pw2);
+		addmodifyOwner(currentOwner, pw1, nombre, apellido, dni, email, cuenta);
+	}
+	
+	public void addmodifyOwner(Owner currentOwner, String password, String nombre, String apellido, String dni, String email,
+			String cuenta) throws UserAlreadyExists {
+		String un = currentOwner.getUsername();
+		
+		DataAccess dbManager = new DataAccess();
+		dbManager.modifyOwner(un, password, nombre, apellido, dni, email, cuenta);
+		dbManager.close();
+	}
+	
 
 	@Override
 	public void checkAddClient(String username, String pw1, String pw2, String nombre, String apellido, String dni,
@@ -409,6 +427,13 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	public void confirmHouse(RuralHouse rh) {
 		DataAccess dbManager = new DataAccess();
 		dbManager.confirmHouse(rh.getHouseNumber());
+		dbManager.close();
+	}
+	
+	@Override
+	public void removeOwner(Owner ow) {
+		DataAccess dbManager = new DataAccess();
+		dbManager.removeOwner(ow);
 		dbManager.close();
 	}
 

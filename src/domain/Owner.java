@@ -42,6 +42,10 @@ public class Owner extends User {
 	public Vector<RuralHouse> getRuralHouses() {
 		return ruralHouses;
 	}
+	
+	public void setRuralHouses(Vector<RuralHouse> ruralHousesOwner) {
+		ruralHouses= ruralHousesOwner;
+	}
 
 	public void setPassword(String password) {
 		this.password = password;
