@@ -97,6 +97,16 @@ public class CliOptions extends JFrame {
 		});
 		btnMostrarReservas.setBounds(112, 93, 183, 33);
 		contentPane.add(btnMostrarReservas);
+		
+		JButton btnEditPerfil = new JButton("Editar Perfil");
+		btnEditPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditClientGUI ec = new EditClientGUI(currentClient, businessLogic);
+				ec.setVisible(true);
+			}
+		});
+		btnEditPerfil.setBounds(112, 139, 183, 33);
+		contentPane.add(btnEditPerfil);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {

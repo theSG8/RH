@@ -139,4 +139,8 @@ public interface ApplicationFacadeInterfaceWS {
 	public void modifyOwner(Owner currentOwner, String pw1, String pw2, String nombre,
 			String apellido, String dni, String email, String cuenta)
 			throws PasswordsDoesNotMatch, UserAlreadyExists;
+
+	public void modifyClient(Client currentClient, String pw1, String pw2,
+			String nombre, String apellido, String dni, String email,
+			String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
 }

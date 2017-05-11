@@ -218,6 +218,22 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		addmodifyOwner(currentOwner, pw1, nombre, apellido, dni, email, cuenta);
 	}
 	
+	@Override
+	public void modifyClient(Client currentClient, String pw1, String pw2, String nombre, String apellido, String dni,
+			String email, String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists {
+		checkDoublePassword(pw1, pw2);
+		addmodifyClient(currentClient, pw1, nombre, apellido, dni, email, cuenta);
+	}
+	
+	public void addmodifyClient(Client currentClient, String password, String nombre, String apellido, String dni, String email,
+			String cuenta) throws UserAlreadyExists {
+		String un = currentClient.getUsername();
+		
+		DataAccess dbManager = new DataAccess();
+		dbManager.modifyClient(un, password, nombre, apellido, dni, email, cuenta);
+		dbManager.close();
+	}
+	
 	public void addmodifyOwner(Owner currentOwner, String password, String nombre, String apellido, String dni, String email,
 			String cuenta) throws UserAlreadyExists {
 		String un = currentOwner.getUsername();

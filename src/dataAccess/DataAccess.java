@@ -568,4 +568,18 @@ public class DataAccess {
 		
 	}
 
+	public void modifyClient(String un, String password, String nombre,
+			String apellido, String dni, String email, String cuenta) {
+		db.getTransaction().begin();
+		Client cl = db.find(Client.class, un);
+		cl.setPassword(password);
+		cl.setNombre(nombre);
+		cl.setApellido(apellido);
+		cl.setDni(dni);
+		cl.setEmail(email);
+		cl.setCuenta(cuenta);
+		db.getTransaction().commit();
+		
+	}
+
 }
