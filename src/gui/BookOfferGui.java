@@ -98,6 +98,7 @@ public class BookOfferGui extends JFrame {
 		contentPane.add(lblOfertasDisponibles);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setEnabled(false);
 		scrollPane.setBounds(new Rectangle(45, 305, 320, 116));
 		scrollPane.setBounds(38, 250, 555, 116);
 		contentPane.add(scrollPane);
@@ -176,21 +177,28 @@ public class BookOfferGui extends JFrame {
 		contentPane.add(btnBuscar);
 
 		JButton btnReservar = new JButton("RESERVAR");
-		if (CliOptions.currentClient==null){
-			btnReservar.setEnabled(false);	
+		if (CliOptions.currentClient == null) {
+			btnReservar.setEnabled(false);
 		}
 		btnReservar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				Integer value = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+				if (table.getSelectedRowCount() != 0) {
+					System.out.println(table.getSelectedRowCount());
 
-				businessLogic.bookOffer(CliOptions.currentClient, value);
+					Integer value = (Integer) table.getValueAt(table.getSelectedRow(), 0);
 
-				showDialog("Oferta reservada correctamente");
+					businessLogic.bookOffer(CliOptions.currentClient, value);
 
-				tableModel.setRowCount(0);
-				SetOffers();
+					showDialog("Oferta reservada correctamente");
+
+					tableModel.setRowCount(0);
+					SetOffers();
+
+				} else {
+					showDialog("No hay oferta seleccioanda");
+				}
 
 			}
 		});

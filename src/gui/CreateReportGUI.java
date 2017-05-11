@@ -70,7 +70,9 @@ public class CreateReportGUI extends JFrame {
 
 		list.setModel(listModelH);
 		for (RuralHouse rh : houses) {
-			listModelH.addElement(rh);
+			if (rh.getConfirmed()) {
+				listModelH.addElement(rh);
+			}
 		}
 
 		contentPane.add(list);
@@ -100,7 +102,9 @@ public class CreateReportGUI extends JFrame {
 
 				listModelH.clear();
 				for (RuralHouse hs : houses) {
-					listModelH.addElement(hs);
+					if (hs.getConfirmed()) {
+						listModelH.addElement(hs);
+					}
 				}
 
 			}

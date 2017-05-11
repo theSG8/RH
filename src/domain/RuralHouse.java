@@ -36,6 +36,7 @@ public class RuralHouse implements Serializable {
 	public String nBathrooms;
 	public String nDrooms;
 	public String nParking;
+	public boolean isConfirmed;
 
 	public RuralHouse() {
 		super();
@@ -52,6 +53,7 @@ public class RuralHouse implements Serializable {
 		this.nParking = nParking;
 		offers = new Vector<Offer>();
 		OwnerName = ow;
+		isConfirmed = false;
 	}
 
 	public Integer getHouseNumber() {
@@ -221,6 +223,16 @@ public class RuralHouse implements Serializable {
 			}
 		}
 		return null;
+
+	}
+
+	public void setConfirmed(boolean b) {
+		this.isConfirmed = b;
+
+	}
+
+	public boolean getConfirmed() {
+		return isConfirmed;
 
 	}
 

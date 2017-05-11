@@ -364,8 +364,9 @@ public class DataAccess {
 		db.getTransaction().begin();
 		Client client = db.find(Client.class, b.getClient().getUsername());
 		Offer of = db.find(Offer.class, b.getOf().getOfferNumber());
-		of.cancelOffer();
-		client.removeBooking(of);
+		// of.cancelOffer();
+		// client.removeBooking(of);
+		of.cancelBooking();
 		Booking bk = db.find(Booking.class, b.getBookingNumber());
 		db.remove(bk);
 		db.getTransaction().commit();
@@ -537,6 +538,13 @@ public class DataAccess {
 			}
 		}
 		return true;
+	}
+
+	public void confirmHouse(int hn) {
+		db.getTransaction().begin();
+		RuralHouse rh = db.find(RuralHouse.class, hn);
+		rh.setConfirmed(true);
+		db.getTransaction().commit();
 	}
 
 }

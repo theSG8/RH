@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -8,20 +9,20 @@ import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import domain.RuralHouse;
 
-public class AllHouses extends JFrame {
+public class ConfirmHousesGUI extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultListModel<RuralHouse> listModel = new DefaultListModel<RuralHouse>();
-	private JList<RuralHouse> list;
 	private ApplicationFacadeInterfaceWS businessLogic;
+	private Vector<RuralHouse> houses;
 
 	/**
 	 * Launch the application.
@@ -31,7 +32,7 @@ public class AllHouses extends JFrame {
 			@Override
 			public void run() {
 				try {
-					AllHouses frame = new AllHouses(null, null);
+					ConfirmHousesGUI frame = new ConfirmHousesGUI(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,58 +44,54 @@ public class AllHouses extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AllHouses(ApplicationFacadeInterfaceWS bl, Vector<RuralHouse> houses) {
-		setBusinessLogic(bl);
-		setBounds(100, 100, 450, 576);
+	public ConfirmHousesGUI(ApplicationFacadeInterfaceWS bl) {
+
+		businessLogic = bl;
+
+		houses = businessLogic.getAllRuralHouses();
+
+		setBounds(100, 100, 380, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		list = new JList<RuralHouse>();
-		list.setBounds(56, 36, 309, 431);
+		JList<RuralHouse> list = new JList<RuralHouse>();
+		list.setBounds(10, 77, 344, 231);
+
 		list.setModel(listModel);
 
 		for (RuralHouse rh : houses) {
-			if (rh.isConfirmed) {
+			if (!rh.isConfirmed) {
 				listModel.addElement(rh);
 			}
 		}
 
 		contentPane.add(list);
 
-		JButton btnVerOfertas = new JButton("Ver Ofertas");
-		btnVerOfertas.addActionListener(new ActionListener() {
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				businessLogic.confirmHouse(list.getSelectedValue());
 
-				if (list.getSelectedValue() != null) {
-					BookOfferGui rog = new BookOfferGui(businessLogic, list.getSelectedValue());
-					rog.setVisible(true);
-					close();
+				listModel.clear();
 
-				} else {
-					showDialog("No se ha seleccionado ninguna casa");
+				houses = businessLogic.getAllRuralHouses();
 
+				for (RuralHouse rh : houses) {
+					if (!rh.isConfirmed) {
+						listModel.addElement(rh);
+					}
 				}
-
 			}
 		});
-		btnVerOfertas.setBounds(66, 478, 299, 37);
-		contentPane.add(btnVerOfertas);
-	}
+		btnConfirmar.setBounds(119, 319, 127, 31);
+		contentPane.add(btnConfirmar);
 
-	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {
-		businessLogic = bl;
-	}
-
-	private void showDialog(String msg) {
-		JOptionPane.showMessageDialog(this, msg);
-
-	}
-
-	private void close() {
-
-		this.setVisible(false);
+		JLabel lblConfirmarCasas = new JLabel("Confirmar Casas");
+		lblConfirmarCasas.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		lblConfirmarCasas.setBounds(119, 27, 139, 39);
+		contentPane.add(lblConfirmarCasas);
 	}
 }

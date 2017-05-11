@@ -84,8 +84,20 @@ public class AdOptions extends JFrame {
 				cr.setVisible(true);
 			}
 		});
-		btnWriteReports.setBounds(120, 83, 192, 39);
+		btnWriteReports.setBounds(120, 75, 192, 39);
 		contentPane.add(btnWriteReports);
+
+		JButton btnConfirmarCasa = new JButton(
+				ResourceBundle.getBundle("Etiquetas").getString("AdOptions.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnConfirmarCasa.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ConfirmHousesGUI ch = new ConfirmHousesGUI(bl);
+				ch.setVisible(true);
+			}
+		});
+		btnConfirmarCasa.setBounds(120, 125, 192, 39);
+		contentPane.add(btnConfirmarCasa);
 	}
 
 	private void setBusinessLogic(ApplicationFacadeInterfaceWS bl) {

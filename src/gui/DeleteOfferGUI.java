@@ -70,8 +70,12 @@ public class DeleteOfferGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (offerList.getSelectedValue() != null) {
 					Offer selectedOffer = offerList.getSelectedValue();
-					businessLogic.removeOffer(selectedOffer);
-					listModel.remove(offerList.getSelectedIndex());
+					if (!selectedOffer.isBooked()) {
+						businessLogic.removeOffer(selectedOffer);
+						listModel.remove(offerList.getSelectedIndex());
+					} else {
+						showDialog("No se puede eliminar: La oferta esta reservada");
+					}
 				}
 			}
 		});

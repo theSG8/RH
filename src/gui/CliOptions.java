@@ -15,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.ApplicationFacadeInterfaceWS;
 import domain.Booking;
 import domain.Client;
-import domain.Offer;
 import domain.RuralHouse;
 
 public class CliOptions extends JFrame {
@@ -55,11 +54,19 @@ public class CliOptions extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				Vector<RuralHouse> houses = businessLogic.getAllRuralHouses();
-				if (houses.isEmpty()) {
+				Vector<RuralHouse> confirmedHouses = new Vector<RuralHouse>();
+
+				for (RuralHouse rh : houses) {
+					if (rh.getConfirmed()) {
+						confirmedHouses.addElement(rh);
+					}
+				}
+
+				if (confirmedHouses.isEmpty()) {
 					showDialog("No hay casas rurales");
 
 				} else {
-					AllHouses ah = new AllHouses(businessLogic, houses);
+					AllHouses ah = new AllHouses(businessLogic, confirmedHouses);
 					ah.setVisible(true);
 				}
 

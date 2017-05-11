@@ -1,4 +1,4 @@
-package businessLogic; 
+package businessLogic;
 
 import java.util.Date;
 import java.util.Vector;
@@ -402,6 +402,13 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	public void addNewOwnerReport(OwnerReport or) throws ExistingTitleException {
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeNewOwnerReport(or);
+		dbManager.close();
+	}
+
+	@Override
+	public void confirmHouse(RuralHouse rh) {
+		DataAccess dbManager = new DataAccess();
+		dbManager.confirmHouse(rh.getHouseNumber());
 		dbManager.close();
 	}
 

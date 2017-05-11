@@ -131,4 +131,6 @@ public interface ApplicationFacadeInterfaceWS {
 	public void addNewClientReport(ClientReport cr) throws ExistingTitleException;
 
 	public void addNewOwnerReport(OwnerReport or) throws ExistingTitleException;
+
+	void confirmHouse(RuralHouse rh);
 }

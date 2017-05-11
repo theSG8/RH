@@ -133,7 +133,7 @@ public class Offer implements Serializable {
 		booked = true;
 	}
 
-	public void cancelOffer() {
+	public void cancelBooking() {
 
 		booked = false;
 	}
@@ -141,4 +141,5 @@ public class Offer implements Serializable {
 	public boolean isBooked() {
 		return booked;
 	}
+
 }

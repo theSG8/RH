@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.ApplicationFacadeInterfaceWS;
 import businessLogic.FacadeImplementationWS;
+import domain.Offer;
 import domain.RuralHouse;
 
 public class DeleteRuralHouseGUI extends JFrame {
@@ -76,8 +77,23 @@ public class DeleteRuralHouseGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (ruralHouseslist.getSelectedValue() != null) {
-					businessLogic.removeHouse(ruralHouseslist.getSelectedValue());
-					listModel.remove(ruralHouseslist.getSelectedIndex());
+
+					Vector<Offer> houseOffers = businessLogic.getHouseOffers(ruralHouseslist.getSelectedValue());
+					boolean ok = true;
+					for (Offer o : houseOffers) {
+						if (o.isBooked()) {
+							ok = false;
+							break;
+						}
+					}
+					if (ok) {
+
+						businessLogic.removeHouse(ruralHouseslist.getSelectedValue());
+						listModel.remove(ruralHouseslist.getSelectedIndex());
+					} else {
+						showDialog("No se puede eliminar: La casa tiene ofertas reservadas");
+
+					}
 				}
 			}
 		});

@@ -141,7 +141,6 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					RegisterGUI reg = new RegisterGUI(getBusinessLogic());
 					reg.setVisible(true);
-					close();
 				}
 			});
 		}
@@ -163,7 +162,7 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					LoginGUI log = new LoginGUI(getBusinessLogic());
 					log.setVisible(true);
-					close();
+
 				}
 			});
 		}
