@@ -453,4 +453,15 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 		dbManager.close();
 	}
 
+	@Override
+	public RuralHouse updateHouse(Integer houseNumber, String des, String city,
+			String kitch, String bed, String bath, String din, String park) {
+	
+		DataAccess dbManager = new DataAccess();
+		RuralHouse rh =dbManager.updateHouse(houseNumber,des, city,
+				kitch, bed, bath,  din,park);
+		dbManager.close();
+		return rh;
+	}
+
 }

@@ -143,4 +143,8 @@ public interface ApplicationFacadeInterfaceWS {
 	public void modifyClient(Client currentClient, String pw1, String pw2,
 			String nombre, String apellido, String dni, String email,
 			String cuenta) throws PasswordsDoesNotMatch, UserAlreadyExists;
+
+	RuralHouse updateHouse(Integer houseNumber, String des, String city,
+		    String kitch, String bed, String bath,
+			String din, String park);
 }

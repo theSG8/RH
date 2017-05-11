@@ -54,7 +54,7 @@ public class DeleteRuralHouseGUI extends JFrame {
 
 		setBusinessLogic(bl);
 
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 341);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -97,8 +97,21 @@ public class DeleteRuralHouseGUI extends JFrame {
 				}
 			}
 		});
-		btnDeleteRuralHouse.setBounds(138, 201, 157, 39);
+		btnDeleteRuralHouse.setBounds(139, 253, 157, 39);
 		contentPane.add(btnDeleteRuralHouse);
+		
+		JButton btnEdit = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DeleteRuralHouseGUI.btnEdit.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (ruralHouseslist.getSelectedValue() != null) {
+				EditHouse eh = new EditHouse(businessLogic, ruralHouseslist.getSelectedValue());
+				eh.setVisible(true);
+				close();
+				}
+			}
+		});
+		btnEdit.setBounds(139, 203, 157, 39);
+		contentPane.add(btnEdit);
 
 		for (RuralHouse h : rh) {
 			listModel.addElement(h);
@@ -113,5 +126,9 @@ public class DeleteRuralHouseGUI extends JFrame {
 		JOptionPane.showMessageDialog(this, msg);
 
 	}
+	
+	private void close() {
+		this.setVisible(false);
 
+	}
 }

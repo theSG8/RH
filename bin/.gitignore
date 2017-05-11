@@ -1,10 +1,8 @@
-/domain/
-/gui/
 /businessLogic/
+/configuration/
 /dataAccess/
-/Etiquetas.properties
+/domain/
 /exceptions/
+/gui/
 /1.png
-/2.png
-/5.png
-/9.png
+/16.png

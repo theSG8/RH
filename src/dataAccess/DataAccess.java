@@ -582,4 +582,20 @@ public class DataAccess {
 		
 	}
 
+	public RuralHouse updateHouse(Integer houseNumber, String des, String city,
+			String kitch, String bed, String bath, String din, String park) {
+		db.getTransaction().begin();
+		RuralHouse rh =db.find(RuralHouse.class, houseNumber);
+		
+		rh.setCity(city);
+		rh.setDescription(des);
+		rh.setnKitchens(kitch);
+		rh.setnBedrooms(bed);
+		rh.setnBathrooms(bath);
+		rh.setnDrooms(din);
+		rh.setnParking(park);
+		db.getTransaction().commit();
+		return rh;
+	}
+
 }
