@@ -51,14 +51,14 @@ public class ViewConcreteReportGUI extends JFrame {
 		lblDesc.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblDesc.setVerticalAlignment(SwingConstants.TOP);
 		lblDesc.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDesc.setBounds(44, 140, 320, 89);
+		lblDesc.setBounds(44, 140, 351, 115);
 		contentPane.add(lblDesc);
 
 		lblDesc.setText(desc);
 
 		JLabel lblId = new JLabel("id");
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblId.setBounds(32, 470, 259, 22);
+		lblId.setBounds(32, 470, 363, 22);
 		contentPane.add(lblId);
 
 		lblId.setText(ob);

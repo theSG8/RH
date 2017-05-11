@@ -52,7 +52,7 @@ public class ViewReportsGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		list = new JList<Report>();
-		list.setBounds(345, 30, 219, 339);
+		list.setBounds(283, 30, 281, 339);
 		list.setModel(listModel);
 		for (HouseReport rh : houseRep) {
 			listModel.addElement(rh);
