@@ -28,7 +28,7 @@ public class Owner extends User {
 		this.dni = dni;
 		this.email = email;
 		this.cuenta = cuenta;
-		ruralHouses = new Vector<RuralHouse>();
+		ruralHouses = new Vector<RuralHouse>(); 
 	}
 
 	public String getUsername() {
