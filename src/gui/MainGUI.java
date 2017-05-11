@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -10,7 +9,6 @@ import java.awt.event.WindowEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
-
 
 /**
  * @author Software Engineering teachers
@@ -24,8 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
-import domain.RuralHouse;
 import businessLogic.ApplicationFacadeInterfaceWS;
+import domain.RuralHouse;
 
 public class MainGUI extends JFrame {
 
@@ -105,10 +103,11 @@ public class MainGUI extends JFrame {
 			jContentPane.add(getBoton3());
 			jContentPane.add(getBoton2());
 			jContentPane.add(getPanel());
-			
+
 			JButton botonOfertas = new JButton();
 			botonOfertas.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.botonOfertas.text_1")); //$NON-NLS-1$ //$NON-NLS-2$
 			botonOfertas.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					Vector<RuralHouse> houses = getBusinessLogic().getAllRuralHouses();
 					if (houses.isEmpty()) {
@@ -120,8 +119,8 @@ public class MainGUI extends JFrame {
 					}
 				}
 			});
-			
-			botonOfertas.setBounds(0, 191, 477, 65);
+
+			botonOfertas.setBounds(0, 191, 479, 65);
 			jContentPane.add(botonOfertas);
 		}
 		return jContentPane;
@@ -135,7 +134,7 @@ public class MainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (boton2 == null) {
 			boton2 = new JButton();
-			boton2.setBounds(0, 130, 477, 65);
+			boton2.setBounds(0, 130, 479, 65);
 			boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 			boton2.addActionListener(new java.awt.event.ActionListener() {
 				@Override
@@ -157,7 +156,7 @@ public class MainGUI extends JFrame {
 	private JButton getBoton3() {
 		if (boton3 == null) {
 			boton3 = new JButton();
-			boton3.setBounds(0, 65, 477, 65);
+			boton3.setBounds(0, 68, 479, 65);
 			boton3.setText(ResourceBundle.getBundle("Etiquetas").getString("Login"));
 			boton3.addActionListener(new java.awt.event.ActionListener() {
 				@Override
@@ -179,7 +178,7 @@ public class MainGUI extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-			lblNewLabel.setBounds(0, 0, 477, 65);
+			lblNewLabel.setBounds(0, 0, 479, 65);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 			lblNewLabel.setForeground(Color.BLACK);
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -239,7 +238,7 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBounds(0, 280, 477, 65);
+			panel.setBounds(0, 253, 479, 100);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
@@ -253,7 +252,7 @@ public class MainGUI extends JFrame {
 		boton2.setText(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
-	
+
 	private void showDialog(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 
