@@ -19,7 +19,7 @@ public class Owner extends User {
 	Vector<RuralHouse> ruralHouses;
 
 	public Owner(String username, String password, String nombre, String apellido, String dni, String email,
-			String cuenta, Vector<RuralHouse> ruralHouses) {
+			String cuenta) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -28,7 +28,7 @@ public class Owner extends User {
 		this.dni = dni;
 		this.email = email;
 		this.cuenta = cuenta;
-		this.ruralHouses = ruralHouses;
+		ruralHouses = new Vector<RuralHouse>();
 	}
 
 	public String getUsername() {

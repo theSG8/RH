@@ -186,7 +186,7 @@ public class FacadeImplementationWS implements ApplicationFacadeInterfaceWS {
 	// A�ade un nuevo owner, llamando al metodo de la base de datos
 	public void addNewOwner(String username, String password, String nombre, String apellido, String dni, String email,
 			String cuenta) throws UserAlreadyExists {
-		Owner o = new Owner(username, password, nombre, apellido, dni, email, cuenta, null);
+		Owner o = new Owner(username, password, nombre, apellido, dni, email, cuenta);
 		DataAccess dbManager = new DataAccess();
 		dbManager.storeNewOwner(o);
 		dbManager.close();
