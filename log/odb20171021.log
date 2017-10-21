@@ -1,0 +1,99 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-10-21 11:44:01 #1 store] 
+Database 'C:\Users\ROBERTO\Desktop\Alex\RH\resources\ruralHouses.odb' has been recovered (tr. 12-21)
+
+[2017-10-21 11:44:01 #2 store] 
+Database 'C:\Users\ROBERTO\Desktop\Alex\RH\resources\ruralHouses.odb' is opened by 10248@ROBER3000
+
+[2017-10-21 11:44:01 #3 type] 
+Type domain.Owner is not enhanced.
+
+[2017-10-21 11:44:01 #4 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-10-21 11:44:01 #5 type] 
+Type domain.Offer is not enhanced.
+
+[2017-10-21 11:44:01 #6 type] 
+Type domain.Client is not enhanced.
+
+[2017-10-21 11:44:01 #7 type] 
+Type domain.Admin is not enhanced.
+
+[2017-10-21 11:44:01 #8 type] 
+Type domain.Report is not enhanced.
+
+[2017-10-21 11:44:01 #9 type] 
+Type domain.ClientReport is not enhanced.
+
+[2017-10-21 11:44:01 #10 type] 
+Type domain.HouseReport is not enhanced.
+
+[2017-10-21 11:44:01 #11 type] 
+Type domain.OwnerReport is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-10-21 11:44:30 #1 store] 
+Database 'C:\Users\ROBERTO\Desktop\Alex\RH\resources\ruralHouses.odb' is opened by 12252@ROBER3000
+
+[2017-10-21 11:44:30 #2 type] 
+Type domain.Owner is not enhanced.
+
+[2017-10-21 11:44:30 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-10-21 11:44:30 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-10-21 11:44:30 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-10-21 11:44:30 #6 type] 
+Type domain.Admin is not enhanced.
+
+[2017-10-21 11:44:30 #7 type] 
+Type domain.Report is not enhanced.
+
+[2017-10-21 11:44:30 #8 type] 
+Type domain.ClientReport is not enhanced.
+
+[2017-10-21 11:44:30 #9 type] 
+Type domain.HouseReport is not enhanced.
+
+[2017-10-21 11:44:30 #10 type] 
+Type domain.OwnerReport is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-10-21 11:44:56 #1 store] 
+Database 'C:\Users\ROBERTO\Desktop\Alex\RH\resources\ruralHouses.odb' is opened by 9708@ROBER3000
+
+[2017-10-21 11:44:56 #2 type] 
+Type domain.Owner is not enhanced.
+
+[2017-10-21 11:44:56 #3 type] 
+Type domain.RuralHouse is not enhanced.
+
+[2017-10-21 11:44:56 #4 type] 
+Type domain.Offer is not enhanced.
+
+[2017-10-21 11:44:56 #5 type] 
+Type domain.Client is not enhanced.
+
+[2017-10-21 11:44:56 #6 type] 
+Type domain.Admin is not enhanced.
+
+[2017-10-21 11:44:56 #7 type] 
+Type domain.Report is not enhanced.
+
+[2017-10-21 11:44:56 #8 type] 
+Type domain.ClientReport is not enhanced.
+
+[2017-10-21 11:44:56 #9 type] 
+Type domain.HouseReport is not enhanced.
+
+[2017-10-21 11:44:56 #10 type] 
+Type domain.OwnerReport is not enhanced.
+
